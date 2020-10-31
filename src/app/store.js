@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import planetsReducer from '../features/planets/planetsSlice'
 
 export default configureStore({
   reducer: {
-    counter: counterReducer,
-  },
-});
+    planets: planetsReducer
+  }
+})
