@@ -1,12 +1,37 @@
 import React, { useState, useEffect } from 'react'
-import TablePagination from '@material-ui/core/TablePagination'
 
 import { updateData, selectCount, selectPlanets, selectNext, selectPrevious } from './planetsSlice'
 import { useDispatch, useSelector } from 'react-redux'
 
+import { makeStyles } from '@material-ui/core/styles'
+import Card from '@material-ui/core/Card'
+import CardActions from '@material-ui/core/CardActions'
+import CardContent from '@material-ui/core/CardContent'
+import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
+import TablePagination from '@material-ui/core/TablePagination'
+
+
+const useStyles = makeStyles({
+    wrapper: {
+        backgroundColor: '#e0e0e0',
+        height: '100vh'
+    },
+    card: {
+        minWidth: 275,
+        margin: 10
+    },
+    lists_planet: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        paddingTop: 25
+    }
+})
 
 
 export const HomePage = () => {
+    const classes = useStyles()
     const dispatch = useDispatch()
 
     const count = useSelector(selectCount)
@@ -41,10 +66,29 @@ export const HomePage = () => {
         }
     }
 
-    let rendered
+    let listsPlanet
 
     if (planets) {
-        rendered = planets.map(planet => <p key={planet.name}>{planet.name}</p>)
+        listsPlanet = planets.map(planet => (
+            <Card className={classes.card} variant="outlined">
+                <CardContent>
+                    <Typography gutterBottom>
+                        {planet.name}
+                    </Typography>
+                    <br />
+                    <Typography color="textSecondary" component="p">
+                        {planet.climate}
+                    </Typography>
+                    <br />
+                    <Typography color="textSecondary" component="p">
+                        {planet.population}
+                    </Typography>
+                </CardContent>
+                <CardActions>
+                    <Button size="small">Learn More</Button>
+                </CardActions>
+            </Card>
+        ))
     }
 
 
@@ -56,15 +100,21 @@ export const HomePage = () => {
 
     return (
         <section>
-            {rendered}
-            <TablePagination
-                rowsPerPageOptions={[]}
-                component="div"
-                count={count}
-                rowsPerPage={10}
-                page={page}
-                onChangePage={handleChangePage}
-            />
+            <div className={classes.wrapper}>
+                <div className={classes.lists_planet}>
+                    {listsPlanet}
+                </div>
+                <div>
+                    <TablePagination
+                        rowsPerPageOptions={[]}
+                        component="div"
+                        count={count}
+                        rowsPerPage={10}
+                        page={page}
+                        onChangePage={handleChangePage}
+                    />
+                </div>
+            </div>
         </section>
     )
 }
