@@ -8,13 +8,14 @@ import {
 } from 'react-router-dom'
 
 import { HomePage } from './features/planets/HomePage'
-
+import { TopBar } from './app/TopBar'
 
 function App() {
 
   return (
     <div className="App">
       <Router>
+        <TopBar />
         <Switch>
           <Route
             exact

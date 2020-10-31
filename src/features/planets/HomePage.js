@@ -18,7 +18,7 @@ const useStyles = makeStyles({
         height: '100vh'
     },
     card: {
-        minWidth: 275,
+        minWidth: 375,
         margin: 10
     },
     lists_planet: {
@@ -75,13 +75,14 @@ export const HomePage = () => {
                     <Typography gutterBottom>
                         {planet.name}
                     </Typography>
+                    <hr />
                     <br />
                     <Typography color="textSecondary" component="p">
-                        {planet.climate}
+                        Climate: {planet.climate}
                     </Typography>
                     <br />
                     <Typography color="textSecondary" component="p">
-                        {planet.population}
+                        Population: {planet.population}
                     </Typography>
                 </CardContent>
                 <CardActions>
