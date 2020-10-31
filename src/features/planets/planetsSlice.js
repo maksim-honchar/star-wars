@@ -32,5 +32,4 @@ export const selectPrevious = state => state.planets.data.previous
 export const selectPlanets = state => state.planets.data.results
 
 
-
 export default planetsSlice.reducer

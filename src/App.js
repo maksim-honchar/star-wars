@@ -9,6 +9,7 @@ import {
 
 import { HomePage } from './features/planets/HomePage'
 import { TopBar } from './app/TopBar'
+import { SinglePlanetPage } from './features/planets/SinglePlanetPage'
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
               </React.Fragment>
             )}
           />
+          <Route exact path="/planets/:planetName" component={SinglePlanetPage} />
           <Redirect to="/" />
         </Switch>
       </Router>
