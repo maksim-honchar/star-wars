@@ -22,17 +22,6 @@ const planetsSlice = createSlice({
 export const { updateData } = planetsSlice.actions
 
 
-export const asyncRequestData = state => async (dispatch) => {
-    const response = await fetch('https://swapi.dev/api/planets/')
-    if (response.ok) {
-        const result = await response.json()
-        // console.log(result)
-        dispatch(updateData(result))
-    } else {
-        console.log('Mistake HTTP: ' + response.status)
-    }
-}
-
 
 export const selectCount = state => state.planets.data.count
 

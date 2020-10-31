@@ -1,17 +1,33 @@
 import React from 'react'
 import './App.css'
-
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom'
 
 import { HomePage } from './features/planets/HomePage'
 
 
 function App() {
 
-
-
   return (
     <div className="App">
-      <HomePage />
+      <Router>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <React.Fragment>
+                <HomePage />
+              </React.Fragment>
+            )}
+          />
+          <Redirect to="/" />
+        </Switch>
+      </Router>
     </div>
   )
 }

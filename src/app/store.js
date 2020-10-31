@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit'
 import planetsReducer from '../features/planets/planetsSlice'
 
 export default configureStore({
