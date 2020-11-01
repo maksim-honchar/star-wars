@@ -35,8 +35,6 @@ export const SinglePlanetPage = ({ match }) => {
     const classes = useStyles()
     const [resi, setResi] = useState([])
 
-
-
     const planet = useSelector(state =>
         state.planets.data.results.find(planet => planet.name === planetName)
     )
@@ -54,8 +52,6 @@ export const SinglePlanetPage = ({ match }) => {
         })
     }, [])
 
-
-
     if (!planet) {
         return (
             <section>
@@ -63,7 +59,6 @@ export const SinglePlanetPage = ({ match }) => {
             </section>
         )
     }
-
 
 
     return (
