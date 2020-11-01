@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
-import { updateData, selectCount, selectPlanets, selectNext, selectPrevious } from './planetsSlice'
+import { updateData, selectCount, selectPlanets, selectNext, selectPrevious } from '../redux/planetsSlice'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { makeStyles } from '@material-ui/core/styles'

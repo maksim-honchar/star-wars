@@ -7,9 +7,9 @@ import {
   Redirect,
 } from 'react-router-dom'
 
-import { HomePage } from './features/planets/HomePage'
-import { TopBar } from './app/TopBar'
-import { SinglePlanetPage } from './features/planets/SinglePlanetPage'
+import { HomePage } from './components/HomePage'
+import { TopBar } from './components/TopBar'
+import { SinglePlanetPage } from './components/SinglePlanetPage'
 
 function App() {
 
