@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -12,7 +12,7 @@ import Typography from '@material-ui/core/Typography'
 const useStyles = makeStyles({
     card: {
         maxWidth: 600,
-        height: '80vh',
+        height: '100vh',
         marginTop: 25,
         margin: 'auto'
     }
@@ -23,12 +23,29 @@ const useStyles = makeStyles({
 export const SinglePlanetPage = ({ match }) => {
     const { planetName } = match.params
     const classes = useStyles()
+    const [resi, setResi] = useState([])
 
 
 
     const planet = useSelector(state =>
         state.planets.data.results.find(planet => planet.name === planetName)
     )
+
+    // console.log(planet.residents)
+    let x = []
+    useEffect(() => {
+        planet.residents.map(async (url) => {
+            const response = await fetch(url)
+            const result = await response.json()
+            // console.log(result.name)
+            x.push(result.name)
+            console.log(x)
+            setResi([resi, ...x])
+        })
+    }, [])
+
+
+
 
 
 
@@ -40,6 +57,7 @@ export const SinglePlanetPage = ({ match }) => {
             </section>
         )
     }
+
 
 
     return (
@@ -77,7 +95,7 @@ export const SinglePlanetPage = ({ match }) => {
                         </Typography>
                         <br />
                         <Typography color="textSecondary" component="p">
-                            Residents: <ul></ul>
+                            Residents: {resi.map(name => <p>{name}</p>)}
                         </Typography>
                     </CardContent>
                     <CardActions>
@@ -87,6 +105,6 @@ export const SinglePlanetPage = ({ match }) => {
                     </CardActions>
                 </Card>
             </article>
-        </section>
+        </section >
     )
 }
