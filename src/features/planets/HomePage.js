@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
+
 import { updateData, selectCount, selectPlanets, selectNext, selectPrevious } from './planetsSlice'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -16,7 +17,7 @@ import TablePagination from '@material-ui/core/TablePagination'
 const useStyles = makeStyles({
     wrapper: {
         backgroundColor: '#e0e0e0',
-        height: '100vh'
+        height: '100vh',
     },
     card: {
         minWidth: 375,
@@ -30,6 +31,10 @@ const useStyles = makeStyles({
     },
     link: {
         textDecoration: 'none'
+    },
+    headlines: {
+        color: '#607d8b',
+        fontWeight: 'bold'
     }
 })
 
@@ -82,12 +87,12 @@ export const HomePage = () => {
                         </Typography>
                         <hr />
                         <br />
-                        <Typography component="p">
-                            Climate: {planet.climate}
+                        <Typography component="p" >
+                            Climate: <span className={classes.headlines}>{planet.climate}</span>
                         </Typography>
                         <br />
-                        <Typography component="p">
-                            Population: {planet.population}
+                        <Typography component="p" >
+                            Population:  <span className={classes.headlines}>{planet.population}</span>
                         </Typography>
                     </CardContent>
                     <CardActions>
