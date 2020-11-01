@@ -17,17 +17,14 @@ const useStyles = makeStyles({
     no_residents: {
         border: '1px solid #ff9800',
         padding: 3,
-        marginLeft: 10,
-        borderRadius: 5
-    },
-    residents: {
-        textDecoration: 'underline',
-        paddingTop: 0
+        borderRadius: 5,
+        width: 100,
+        margin: '0 auto'
     },
     wrapper_residents: {
         backgroundColor: '#eceff1',
         borderRadius: 5,
-        padding: 10
+        padding: 20
     }
 })
 
@@ -45,15 +42,15 @@ export const SinglePlanetPage = ({ match }) => {
     )
 
     // console.log(planet.residents)
-    let x = []
+    let names = []
     useEffect(() => {
-        planet.residents.map(async (url) => {
+        planet.residents.forEach(async (url) => {
             const response = await fetch(url)
             const result = await response.json()
             // console.log(result.name)
-            x.push(result.name)
-            console.log(x)
-            setResi([resi, ...x])
+            names.push(result.name)
+            // console.log(names)
+            setResi([resi, ...names])
         })
     }, [])
 
@@ -103,15 +100,16 @@ export const SinglePlanetPage = ({ match }) => {
                             Population: {planet.population}
                         </Typography>
                         <br />
-                        <br />
-                        <Typography variant="body1" component="p" className={classes.wrapper_residents}>
-                            Residents:
+                        <div className={classes.wrapper_residents}>
+                            <Typography variant="h6" gutterBottom>
+                                Residents
+                            </Typography>
                             {
                                 resi.length !== 0
-                                    ? resi.map(name => <p className={classes.residents}>{name}</p>)
-                                    : <span className={classes.no_residents}>No residents</span>
+                                    ? resi.map(name => <Typography variant="subtitle1" className={classes.residents} key={name}>{name}</Typography>)
+                                    : <Typography color="error" className={classes.no_residents}>No residents</Typography>
                             }
-                        </Typography>
+                        </div>
                     </CardContent>
                 </Card>
             </article>
