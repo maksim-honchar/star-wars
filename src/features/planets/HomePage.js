@@ -33,7 +33,7 @@ const useStyles = makeStyles({
         textDecoration: 'none'
     },
     headlines: {
-        color: '#607d8b',
+        color: '#757575',
         fontWeight: 'bold'
     }
 })
