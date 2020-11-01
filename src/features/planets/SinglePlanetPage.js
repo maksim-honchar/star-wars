@@ -46,10 +46,6 @@ export const SinglePlanetPage = ({ match }) => {
 
 
 
-
-
-
-
     if (!planet) {
         return (
             <section>
@@ -65,7 +61,7 @@ export const SinglePlanetPage = ({ match }) => {
             <article>
                 <Card className={classes.card} variant="outlined">
                     <CardContent>
-                        <Typography gutterBottom>
+                        <Typography variant="h3" gutterBottom>
                             {planet.name}
                         </Typography>
                         <hr />
@@ -95,14 +91,9 @@ export const SinglePlanetPage = ({ match }) => {
                         </Typography>
                         <br />
                         <Typography color="textSecondary" component="p">
-                            Residents: {resi.map(name => <p>{name}</p>)}
+                            Residents: {resi.length !== 0 ? resi.map(name => <p>{name}</p>) : 'No residents'}
                         </Typography>
                     </CardContent>
-                    <CardActions>
-                        <Button size="small">
-                            Learn More
-                        </Button>
-                    </CardActions>
                 </Card>
             </article>
         </section >

@@ -27,6 +27,9 @@ const useStyles = makeStyles({
         flexWrap: 'wrap',
         justifyContent: 'center',
         paddingTop: 25
+    },
+    link: {
+        textDecoration: 'none'
     }
 })
 
@@ -71,29 +74,29 @@ export const HomePage = () => {
 
     if (planets) {
         listsPlanet = planets.map(planet => (
-            <Card className={classes.card} variant="outlined" key={planet.name}>
-                <CardContent>
-                    <Typography gutterBottom>
-                        {planet.name}
-                    </Typography>
-                    <hr />
-                    <br />
-                    <Typography color="textSecondary" component="p">
-                        Climate: {planet.climate}
-                    </Typography>
-                    <br />
-                    <Typography color="textSecondary" component="p">
-                        Population: {planet.population}
-                    </Typography>
-                </CardContent>
-                <CardActions>
-                    <Link to={`/planets/${planet.name}`}>
+            <Link to={`/planets/${planet.name}`} className={classes.link}>
+                <Card className={classes.card} variant="outlined" key={planet.name}>
+                    <CardContent>
+                        <Typography variant="h4" gutterBottom>
+                            {planet.name}
+                        </Typography>
+                        <hr />
+                        <br />
+                        <Typography component="p">
+                            Climate: {planet.climate}
+                        </Typography>
+                        <br />
+                        <Typography component="p">
+                            Population: {planet.population}
+                        </Typography>
+                    </CardContent>
+                    <CardActions>
                         <Button size="small">
                             Learn More
-                    </Button>
-                    </Link>
-                </CardActions>
-            </Card>
+                        </Button>
+                    </CardActions>
+                </Card>
+            </Link>
         ))
     }
 
