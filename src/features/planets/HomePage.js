@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
-
 import { updateData, selectCount, selectPlanets, selectNext, selectPrevious } from './planetsSlice'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -79,8 +78,8 @@ export const HomePage = () => {
 
     if (planets) {
         listsPlanet = planets.map(planet => (
-            <Link to={`/planets/${planet.name}`} className={classes.link}>
-                <Card className={classes.card} variant="outlined" key={planet.name}>
+            <Link to={`/planets/${planet.name}`} className={classes.link} key={planet.name}>
+                <Card className={classes.card} variant="outlined" >
                     <CardContent>
                         <Typography variant="h4" gutterBottom>
                             {planet.name}
