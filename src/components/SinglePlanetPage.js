@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+
+import { updateData } from '../redux/planetsSlice'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
@@ -32,6 +34,7 @@ const useStyles = makeStyles({
 
 export const SinglePlanetPage = ({ match }) => {
     const { planetName } = match.params
+    const dispatch = useDispatch()
     const classes = useStyles()
     const [resi, setResi] = useState([])
 
@@ -39,18 +42,31 @@ export const SinglePlanetPage = ({ match }) => {
         state.planets.data.results.find(planet => planet.name === planetName)
     )
 
-    // console.log(planet.residents)
+    // console.log(planet)
+
     let names = []
     useEffect(() => {
-        planet.residents.forEach(async (url) => {
-            const response = await fetch(url)
-            const result = await response.json()
-            // console.log(result.name)
-            names.push(result.name)
-            // console.log(names)
-            setResi([resi, ...names])
-        })
+        if (planet) {
+            planet.residents.forEach(async (url) => {
+                const response = await fetch(url)
+                const result = await response.json()
+                // console.log(result.name)
+                names.push(result.name)
+                // console.log(names)
+                setResi([resi, ...names])
+            })
+        }
+
     }, [])
+
+
+    useEffect(() => {
+        fetch(`https://swapi.dev/api/planets/?search=${planetName}`)
+            .then(response => response.json())
+            .then(result => dispatch(updateData(result)))
+        // .then(result => console.log(result))
+    }, [planetName])
+
 
     if (!planet) {
         return (
@@ -63,7 +79,7 @@ export const SinglePlanetPage = ({ match }) => {
 
     return (
         <section>
-            <article>
+            <div>
                 <Card className={classes.card} variant="outlined">
                     <CardContent>
                         <Typography variant="h3" gutterBottom>
@@ -107,7 +123,7 @@ export const SinglePlanetPage = ({ match }) => {
                         </div>
                     </CardContent>
                 </Card>
-            </article>
+            </div>
         </section >
     )
 }
