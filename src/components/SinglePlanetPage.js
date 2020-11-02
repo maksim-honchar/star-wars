@@ -12,8 +12,8 @@ import Typography from '@material-ui/core/Typography'
 const useStyles = makeStyles({
     card: {
         maxWidth: 600,
-        height: '100vh',
-        marginTop: 25,
+        height: '90vh',
+        marginTop: 20,
         margin: 'auto'
     },
     no_residents: {

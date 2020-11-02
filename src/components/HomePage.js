@@ -14,10 +14,6 @@ import TablePagination from '@material-ui/core/TablePagination'
 
 
 const useStyles = makeStyles({
-    wrapper: {
-        backgroundColor: '#e0e0e0',
-        height: '100vh',
-    },
     card: {
         minWidth: 375,
         margin: 10
@@ -63,7 +59,7 @@ export const HomePage = () => {
 
     }
 
-    const asyncRequestData = state => async (dispatch) => {
+    const asyncRequestData = () => async (dispatch) => {
         const response = await fetch(url)
         if (response.ok) {
             const result = await response.json()
@@ -113,20 +109,18 @@ export const HomePage = () => {
 
     return (
         <section>
-            <div className={classes.wrapper}>
-                <div className={classes.lists_planet}>
-                    {listsPlanet}
-                </div>
-                <div>
-                    <TablePagination
-                        rowsPerPageOptions={[]}
-                        component="div"
-                        count={count}
-                        rowsPerPage={10}
-                        page={page}
-                        onChangePage={handleChangePage}
-                    />
-                </div>
+            <div className={classes.lists_planet}>
+                {listsPlanet}
+            </div>
+            <div>
+                <TablePagination
+                    rowsPerPageOptions={[]}
+                    component="div"
+                    count={count}
+                    rowsPerPage={10}
+                    page={page}
+                    onChangePage={handleChangePage}
+                />
             </div>
         </section>
     )
