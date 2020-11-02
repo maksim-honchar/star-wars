@@ -57,7 +57,7 @@ export const SinglePlanetPage = ({ match }) => {
             })
         }
 
-    }, [])
+    }, [planet])
 
 
     useEffect(() => {
@@ -65,7 +65,7 @@ export const SinglePlanetPage = ({ match }) => {
             .then(response => response.json())
             .then(result => dispatch(updateData(result)))
         // .then(result => console.log(result))
-    }, [planetName])
+    }, [dispatch, planetName])
 
 
     if (!planet) {
