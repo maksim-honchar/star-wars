@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-
 import { updateData, selectCount, selectPlanets, selectNext, selectPrevious } from '../redux/planetsSlice'
 import { useDispatch, useSelector } from 'react-redux'
-
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
@@ -49,7 +47,6 @@ export const HomePage = () => {
     const planets = useSelector(selectPlanets)
     const nextUrlPage = useSelector(selectNext)
     const prevUrlPage = useSelector(selectPrevious)
-
 
     const [page, setPage] = useState(0)
     const [url, setUrl] = useState('https://swapi.dev/api/planets/')
@@ -106,7 +103,6 @@ export const HomePage = () => {
             </Link>
         ))
     }
-
 
     useEffect(() => {
         dispatch(asyncRequestData())

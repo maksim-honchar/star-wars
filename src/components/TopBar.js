@@ -6,8 +6,6 @@ import Typography from '@material-ui/core/Typography'
 import { Link } from 'react-router-dom'
 
 
-
-
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -20,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
         textDecoration: 'none'
     }
 }))
+
 
 export const TopBar = () => {
     const classes = useStyles();
