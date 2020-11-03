@@ -56,7 +56,7 @@ export const SinglePlanetPage = ({ match }) => {
             })
         }
 
-    }, [setResi, planet])
+    }, [planet])
 
 
     useEffect(() => {
