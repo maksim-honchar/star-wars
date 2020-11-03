@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom'
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
+        marginBottom: 20,
     },
     title: {
         flexGrow: 1,

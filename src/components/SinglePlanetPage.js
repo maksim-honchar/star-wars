@@ -6,14 +6,15 @@ import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 import CircularProgress from '@material-ui/core/CircularProgress'
-
+import CardActions from '@material-ui/core/CardActions'
+import Button from '@material-ui/core/Button'
 
 const useStyles = makeStyles({
     card: {
         maxWidth: 600,
-        height: '90vh',
-        marginTop: 20,
-        margin: 'auto'
+        minHeight: '90vh',
+        margin: 'auto',
+        // marginBottom: '5vh'
     },
     no_residents: {
         border: '1px solid #ff9800',
@@ -25,7 +26,8 @@ const useStyles = makeStyles({
     wrapper_residents: {
         backgroundColor: '#eceff1',
         borderRadius: 5,
-        padding: 20
+        padding: 20,
+        minHeight: 300
     }
 })
 
@@ -71,7 +73,7 @@ export const SinglePlanetPage = ({ match }) => {
 
     return (
         <section>
-            <div>
+            <div style={{ backgroundColor: '#e0e0e0' }}>
                 <Card className={classes.card} variant="outlined">
                     <CardContent>
                         <Typography variant="h3" gutterBottom>
@@ -111,12 +113,17 @@ export const SinglePlanetPage = ({ match }) => {
                                 planet.residents.length === 0 ?
                                     <Typography color="error" className={classes.no_residents}>No residents</Typography>
                                     :
-                                    (resi.length < 1) ?
+                                    resi.length < 1 ?
                                         <CircularProgress />
                                         : resi.map(name => <Typography variant="subtitle1" className={classes.residents} key={name}>{name}</Typography>)
                             }
                         </div>
                     </CardContent>
+                    <CardActions>
+                        <Button size="small">
+                            Go Back
+                        </Button>
+                    </CardActions>
                 </Card>
             </div>
         </section >
