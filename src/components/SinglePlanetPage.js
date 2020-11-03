@@ -54,18 +54,12 @@ export const SinglePlanetPage = ({ match }) => {
                 // console.log(names)
                 setResi([resi, ...names])
             })
+        } else {
+            fetch(`https://swapi.dev/api/planets/?search=${planetName}`)
+                .then(response => response.json())
+                .then(result => dispatch(updateData(result)))
         }
-
     }, [planet])
-
-
-    useEffect(() => {
-        fetch(`https://swapi.dev/api/planets/?search=${planetName}`)
-            .then(response => response.json())
-            .then(result => dispatch(updateData(result)))
-        // .then(result => console.log(result))
-    }, [dispatch, planetName])
-
 
     if (!planet) {
         return (
@@ -74,7 +68,6 @@ export const SinglePlanetPage = ({ match }) => {
             </section>
         )
     }
-
 
     return (
         <section>
@@ -118,7 +111,7 @@ export const SinglePlanetPage = ({ match }) => {
                                 planet.residents.length === 0 ?
                                     <Typography color="error" className={classes.no_residents}>No residents</Typography>
                                     :
-                                    resi.length < 1 ?
+                                    (resi.length < 1) ?
                                         <CircularProgress />
                                         : resi.map(name => <Typography variant="subtitle1" className={classes.residents} key={name}>{name}</Typography>)
                             }
