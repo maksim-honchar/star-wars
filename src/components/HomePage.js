@@ -12,6 +12,8 @@ import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import TablePagination from '@material-ui/core/TablePagination'
 
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 const useStyles = makeStyles({
     card: {
@@ -30,6 +32,12 @@ const useStyles = makeStyles({
     headlines: {
         color: '#757575',
         fontWeight: 'bold'
+    },
+    spinner: {
+        margin: 300
+    },
+    table_pagination: {
+        marginTop: 30
     }
 })
 
@@ -105,23 +113,32 @@ export const HomePage = () => {
         dispatch(asyncRequestData())
     }, [page])
 
-
+    console.log(listsPlanet.length)
 
     return (
         <section>
-            <div className={classes.lists_planet}>
-                {listsPlanet}
-            </div>
-            <div>
-                <TablePagination
-                    rowsPerPageOptions={[]}
-                    component="div"
-                    count={count}
-                    rowsPerPage={10}
-                    page={page}
-                    onChangePage={handleChangePage}
-                />
-            </div>
+            {
+                listsPlanet.length < 4 ?
+                    <div className={classes.spinner}>
+                        <CircularProgress />
+                    </div>
+                    :
+                    <React.Fragment>
+                        <div className={classes.lists_planet}>
+                            {listsPlanet}
+                        </div>
+                        <div className={classes.table_pagination}>
+                            <TablePagination
+                                rowsPerPageOptions={[]}
+                                component="div"
+                                count={count}
+                                rowsPerPage={10}
+                                page={page}
+                                onChangePage={handleChangePage}
+                            />
+                        </div>
+                    </React.Fragment>
+            }
         </section>
     )
 }
