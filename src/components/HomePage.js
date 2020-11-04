@@ -63,16 +63,6 @@ export const HomePage = () => {
 
     }
 
-    const asyncRequestData = () => async (dispatch) => {
-        const response = await fetch(url)
-        if (response.ok) {
-            const result = await response.json()
-            // console.log(result)
-            dispatch(updateData(result))
-        } else {
-            console.log('HTTP error: ' + response.status)
-        }
-    }
 
     let listsPlanet
 
@@ -105,8 +95,18 @@ export const HomePage = () => {
     }
 
     useEffect(() => {
+        const asyncRequestData = () => async (dispatch) => {
+            const response = await fetch(url)
+            if (response.ok) {
+                const result = await response.json()
+                // console.log(result)
+                dispatch(updateData(result))
+            } else {
+                console.log('HTTP error: ' + response.status)
+            }
+        }
         dispatch(asyncRequestData())
-    }, [page])
+    }, [dispatch, url])
 
 
     return (
