@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { updateData } from '../redux/planetsSlice'
 import { useHistory } from 'react-router-dom'
 
+import { NotFound } from './NotFound'
+
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
@@ -59,16 +61,15 @@ export const SinglePlanetPage = ({ match }) => {
         }
     }, [dispatch, planet, planetName])
 
+    const onGoback = () => history.push('/')
+
 
     if (!planet) {
         return (
-            <section>
-                <h2>Planet not found!</h2>
-            </section>
+            <NotFound />
         )
     }
 
-    const onGoback = () => history.push('/')
 
     return (
         <section>
