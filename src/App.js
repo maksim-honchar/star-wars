@@ -7,12 +7,12 @@ import {
   Redirect,
 } from 'react-router-dom'
 
-import { HomePage } from './components/HomePage'
 import { TopBar } from './components/TopBar'
+import { HomePage } from './components/HomePage'
 import { SinglePlanetPage } from './components/SinglePlanetPage'
 
-function App() {
 
+function App() {
   return (
     <div className="App">
       <Router>

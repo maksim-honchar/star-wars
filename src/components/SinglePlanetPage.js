@@ -16,6 +16,7 @@ const useStyles = makeStyles({
         maxWidth: 600,
         minHeight: '90vh',
         margin: 'auto',
+        marginTop: 35
     },
     no_residents: {
         border: '1px solid #ff9800',
@@ -118,7 +119,7 @@ export const SinglePlanetPage = ({ match }) => {
                         </div>
                     </CardContent>
                     <CardActions>
-                        <Button size="small" onClick={onGoback}>
+                        <Button onClick={onGoback}>
                             Go Back
                         </Button>
                     </CardActions>
