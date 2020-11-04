@@ -14,7 +14,6 @@ const useStyles = makeStyles({
         maxWidth: 600,
         minHeight: '90vh',
         margin: 'auto',
-        // marginBottom: '5vh'
     },
     no_residents: {
         border: '1px solid #ff9800',
@@ -39,29 +38,25 @@ export const SinglePlanetPage = ({ match }) => {
     const classes = useStyles()
     const [resi, setResi] = useState([])
 
-    const planet = useSelector(state =>
-        state.planets.data.results.find(planet => planet.name === planetName)
-    )
+    const planet = useSelector(state => state.planets.data.results.find(planet => planet.name === planetName))
 
-    // console.log(planet)
+    let arrForResi = []
 
-    let names = []
     useEffect(() => {
         if (planet) {
-            planet.residents.forEach(async (url) => {
-                const response = await fetch(url)
-                const result = await response.json()
-                // console.log(result.name)
-                names.push(result.name)
-                // console.log(names)
-                setResi([resi, ...names])
-            })
+            const { residents } = planet
+            const requests = residents.map(resident => fetch(resident))
+            Promise.all(requests)
+                .then(response => Promise.all(response.map(element => element.json())))
+                .then(result => result.forEach(resident => arrForResi.push(resident.name)))
+                .then(() => setResi(arrForResi))
         } else {
             fetch(`https://swapi.dev/api/planets/?search=${planetName}`)
                 .then(response => response.json())
                 .then(result => dispatch(updateData(result)))
         }
     }, [planet])
+
 
     if (!planet) {
         return (

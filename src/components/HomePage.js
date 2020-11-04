@@ -108,7 +108,6 @@ export const HomePage = () => {
         dispatch(asyncRequestData())
     }, [page])
 
-    console.log(listsPlanet.length)
 
     return (
         <section>
