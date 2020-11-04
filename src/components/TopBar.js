@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { updateData, updateCurrentPage } from '../redux/planetsSlice'
@@ -20,6 +20,8 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.up('sm')]: {
             display: 'block',
         },
+    },
+    link: {
         cursor: 'pointer'
     },
     search: {
@@ -68,6 +70,29 @@ export const TopBar = () => {
     const dispatch = useDispatch()
     const history = useHistory()
 
+    const [search, setSearch] = useState('')
+
+    const handleChange = (e) => {
+        setSearch(e.target.value)
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const asyncRequestData = () => async (dispatch) => {
+            const response = await fetch(`https://swapi.dev/api/planets/?search=${search}`)
+            if (response.ok) {
+                const result = await response.json()
+                console.log(result)
+                dispatch(updateData(result))
+            } else {
+                console.log('HTTP error: ' + response.status)
+            }
+        }
+        dispatch(asyncRequestData())
+        history.push('/planets/search')
+        setSearch('')
+    }
+
     const toStartPage = () => {
         const asyncRequestData = () => async (dispatch) => {
             const response = await fetch('https://swapi.dev/api/planets')
@@ -89,20 +114,24 @@ export const TopBar = () => {
             <AppBar position="static">
                 <Toolbar>
                     <Typography className={classes.title} variant="h6" noWrap>
-                        <span onClick={toStartPage}>Star Wars</span>
+                        <span className={classes.link} onClick={toStartPage}>Star Wars</span>
                     </Typography>
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
                             <SearchIcon />
                         </div>
-                        <InputBase
-                            placeholder="Search…"
-                            classes={{
-                                root: classes.inputRoot,
-                                input: classes.inputInput,
-                            }}
-                            inputProps={{ 'aria-label': 'search' }}
-                        />
+                        <form onSubmit={handleSubmit}>
+                            <InputBase
+                                placeholder="Search…"
+                                classes={{
+                                    root: classes.inputRoot,
+                                    input: classes.inputInput,
+                                }}
+                                inputProps={{ 'aria-label': 'search' }}
+                                value={search}
+                                onChange={handleChange}
+                            />
+                        </form>
                     </div>
                 </Toolbar>
             </AppBar>

@@ -23,7 +23,7 @@ const planetsSlice = createSlice({
 })
 
 
-export const { updateData, updateCurrentPage } = planetsSlice.actions
+export const { updateData, updateCurrentPage, updateSearchPlanet } = planetsSlice.actions
 
 
 
