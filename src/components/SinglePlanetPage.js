@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { updateData } from '../redux/planetsSlice'
-import { useHistory } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
-
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
@@ -36,12 +34,13 @@ const useStyles = makeStyles({
 
 export const SinglePlanetPage = ({ match }) => {
     const { planetName } = match.params
-    const planet = useSelector(state => state.planets.data.results.find(planet => planet.name === planetName))
+    const dispatch = useDispatch()
+    const classes = useStyles()
     const [resi, setResi] = useState([])
 
-    const classes = useStyles()
-    const dispatch = useDispatch()
-    const history = useHistory()
+    const planet = useSelector(state => state.planets.data.results.find(planet => planet.name === planetName))
+
+
 
     useEffect(() => {
         if (planet) {
@@ -67,11 +66,6 @@ export const SinglePlanetPage = ({ match }) => {
             </section>
         )
     }
-
-    const onClickBackPage = () => {
-        history.push('/')
-    }
-
 
     return (
         <section>
@@ -122,7 +116,7 @@ export const SinglePlanetPage = ({ match }) => {
                         </div>
                     </CardContent>
                     <CardActions>
-                        <Button onClick={onClickBackPage}>
+                        <Button size="small">
                             Go Back
                         </Button>
                     </CardActions>
