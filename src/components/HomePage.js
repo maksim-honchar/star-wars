@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { updateData, selectCount, selectPlanets, selectNext, selectPrevious } from '../redux/planetsSlice'
+import { updateData, updateCurrentPage, selectCount, selectPlanets, selectNext, selectPrevious, selectCurrentPage } from '../redux/planetsSlice'
 import { useDispatch, useSelector } from 'react-redux'
+
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
@@ -10,6 +11,7 @@ import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import TablePagination from '@material-ui/core/TablePagination'
 import CircularProgress from '@material-ui/core/CircularProgress'
+
 
 
 const useStyles = makeStyles({
@@ -47,20 +49,19 @@ export const HomePage = () => {
     const planets = useSelector(selectPlanets)
     const nextUrlPage = useSelector(selectNext)
     const prevUrlPage = useSelector(selectPrevious)
+    const currentPage = useSelector(selectCurrentPage)
 
-    const [page, setPage] = useState(0)
-    const [url, setUrl] = useState('https://swapi.dev/api/planets/')
+    const [url, setUrl] = useState(`https://swapi.dev/api/planets/?page=${currentPage + 1}`)
 
 
     const handleChangePage = (event, newPage) => {
-        if (page < newPage) {
-            setPage(newPage)
+        if (currentPage < newPage) {
+            dispatch(updateCurrentPage(newPage))
             setUrl(nextUrlPage)
         } else {
-            setPage(newPage)
+            dispatch(updateCurrentPage(newPage))
             setUrl(prevUrlPage)
         }
-
     }
 
 
@@ -127,7 +128,7 @@ export const HomePage = () => {
                                 component="div"
                                 count={count}
                                 rowsPerPage={10}
-                                page={page}
+                                page={currentPage}
                                 onChangePage={handleChangePage}
                             />
                         </div>
