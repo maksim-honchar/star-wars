@@ -53,7 +53,6 @@ export const HomePage = () => {
 
     const [url, setUrl] = useState(`https://swapi.dev/api/planets/?page=${currentPage + 1}`)
 
-
     const handleChangePage = (event, newPage) => {
         if (currentPage < newPage) {
             dispatch(updateCurrentPage(newPage))
@@ -63,7 +62,6 @@ export const HomePage = () => {
             setUrl(prevUrlPage)
         }
     }
-
 
     let listsPlanet
 

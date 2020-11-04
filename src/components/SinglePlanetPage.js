@@ -33,7 +33,6 @@ const useStyles = makeStyles({
 })
 
 
-
 export const SinglePlanetPage = ({ match }) => {
     const { planetName } = match.params
     const dispatch = useDispatch()
@@ -42,8 +41,6 @@ export const SinglePlanetPage = ({ match }) => {
     const [resi, setResi] = useState([])
 
     const planet = useSelector(state => state.planets.data.results.find(planet => planet.name === planetName))
-
-
 
     useEffect(() => {
         if (planet) {
