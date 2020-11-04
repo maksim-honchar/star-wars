@@ -40,10 +40,11 @@ export const SinglePlanetPage = ({ match }) => {
 
     const planet = useSelector(state => state.planets.data.results.find(planet => planet.name === planetName))
 
-    let arrForResi = []
+
 
     useEffect(() => {
         if (planet) {
+            const arrForResi = []
             const { residents } = planet
             const requests = residents.map(resident => fetch(resident))
             Promise.all(requests)
@@ -55,7 +56,7 @@ export const SinglePlanetPage = ({ match }) => {
                 .then(response => response.json())
                 .then(result => dispatch(updateData(result)))
         }
-    }, [planet])
+    }, [dispatch, planet, planetName])
 
 
     if (!planet) {
