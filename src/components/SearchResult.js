@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { updateData } from '../redux/planetsSlice'
 import { useHistory } from 'react-router-dom'
 
 import { NotFound } from './NotFound'
@@ -42,7 +41,7 @@ export const SearchResult = () => {
     const history = useHistory()
     const [resi, setResi] = useState([])
 
-    const planet = useSelector(state => state.planets.data.results[0])
+    const planet = useSelector(state => state.planets.searchResult[0])
 
     useEffect(() => {
         if (planet) {
@@ -54,11 +53,9 @@ export const SearchResult = () => {
                 .then(result => result.forEach(resident => arrForResi.push(resident.name)))
                 .then(() => setResi(arrForResi))
         } else {
-            fetch(`https://swapi.dev/api/planets/?search=${planet}`)
-                .then(response => response.json())
-                .then(result => dispatch(updateData(result)))
+            history.push('/')
         }
-    }, [dispatch, planet])
+    }, [dispatch, planet, history])
 
     const onGoback = () => history.push('/')
 

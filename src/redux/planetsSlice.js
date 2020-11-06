@@ -10,7 +10,8 @@ const planetsSlice = createSlice({
             previous: null,
             results: []
         },
-        currentPage: 0
+        currentPage: 0,
+        searchResult: []
     },
     reducers: {
         updateData(state, action) {
@@ -18,13 +19,15 @@ const planetsSlice = createSlice({
         },
         updateCurrentPage(state, action) {
             state.currentPage = action.payload
+        },
+        updateSearchResult(state, action) {
+            state.searchResult = action.payload
         }
     }
 })
 
 
-export const { updateData, updateCurrentPage, updateSearchPlanet } = planetsSlice.actions
-
+export const { updateData, updateCurrentPage, updateSearchResult } = planetsSlice.actions
 
 
 export const selectCount = state => state.planets.data.count

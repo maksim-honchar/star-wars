@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { updateData, updateCurrentPage } from '../redux/planetsSlice'
@@ -6,92 +6,38 @@ import { updateData, updateCurrentPage } from '../redux/planetsSlice'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-import InputBase from '@material-ui/core/InputBase'
-import { fade, makeStyles } from '@material-ui/core/styles'
-import SearchIcon from '@material-ui/icons/Search'
+import { makeStyles } from '@material-ui/core/styles'
+
+import { AutoSearch } from './AutoSearch'
 
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
     },
-    title: {
-        flexGrow: 1,
-        display: 'none',
-        [theme.breakpoints.up('sm')]: {
-            display: 'block',
-        },
-    },
     link: {
         cursor: 'pointer'
     },
-    search: {
-        position: 'relative',
-        borderRadius: theme.shape.borderRadius,
-        backgroundColor: fade(theme.palette.common.white, 0.15),
-        '&:hover': {
-            backgroundColor: fade(theme.palette.common.white, 0.25),
-        },
-        marginLeft: 0,
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            marginLeft: theme.spacing(1),
-            width: 'auto',
-        },
-    },
-    searchIcon: {
-        padding: theme.spacing(0, 2),
-        height: '100%',
-        position: 'absolute',
-        pointerEvents: 'none',
+    wrapper4_title_search: {
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
+        margin: 'auto',
     },
-    inputRoot: {
-        color: 'inherit',
+    toolbar: {
+        height: 80
     },
-    inputInput: {
-        padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
-        paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-        transition: theme.transitions.create('width'),
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            width: '12ch',
-            '&:focus': {
-                width: '20ch',
-            },
-        },
+    title: {
+        marginRight: 10
     },
+    search_field: {
+        margin: 10
+    }
 }))
+
 
 export const TopBar = () => {
     const classes = useStyles()
     const dispatch = useDispatch()
     const history = useHistory()
-
-    const [search, setSearch] = useState('')
-
-    const handleChange = (e) => {
-        setSearch(e.target.value)
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        const asyncRequestData = () => async (dispatch) => {
-            const response = await fetch(`https://swapi.dev/api/planets/?search=${search}`)
-            if (response.ok) {
-                const result = await response.json()
-                console.log(result)
-                dispatch(updateData(result))
-            } else {
-                console.log('HTTP error: ' + response.status)
-            }
-        }
-        dispatch(asyncRequestData())
-        history.push('/planets/search')
-        setSearch('')
-    }
 
     const toStartPage = () => {
         const asyncRequestData = () => async (dispatch) => {
@@ -108,30 +54,19 @@ export const TopBar = () => {
         history.push('/')
     }
 
-
     return (
         <div className={classes.root}>
             <AppBar position="static">
-                <Toolbar>
-                    <Typography className={classes.title} variant="h6" noWrap>
-                        <span className={classes.link} onClick={toStartPage}>Star Wars</span>
-                    </Typography>
-                    <div className={classes.search}>
-                        <div className={classes.searchIcon}>
-                            <SearchIcon />
+                <Toolbar className={classes.toolbar}>
+                    <div className={classes.wrapper4_title_search}>
+                        <div className={classes.title}>
+                            <Typography className={classes.title} variant="h6" noWrap>
+                                <span className={classes.link} onClick={toStartPage}>Star Wars</span>
+                            </Typography>
                         </div>
-                        <form onSubmit={handleSubmit}>
-                            <InputBase
-                                placeholder="Search…"
-                                classes={{
-                                    root: classes.inputRoot,
-                                    input: classes.inputInput,
-                                }}
-                                inputProps={{ 'aria-label': 'search' }}
-                                value={search}
-                                onChange={handleChange}
-                            />
-                        </form>
+                        <div className={classes.search_field}>
+                            <AutoSearch />
+                        </div>
                     </div>
                 </Toolbar>
             </AppBar>
