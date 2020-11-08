@@ -10,7 +10,6 @@ import {
 import { TopBar } from './components/TopBar'
 import { HomePage } from './components/HomePage'
 import { SinglePlanetPage } from './components/SinglePlanetPage'
-import { SearchResult } from './components/SearchResult'
 
 
 function App() {
@@ -28,7 +27,6 @@ function App() {
               </React.Fragment>
             )}
           />
-          <Route exact path="/planets/search" component={SearchResult} />
           <Route exact path="/planets/:planetName" component={SinglePlanetPage} />
           <Redirect to="/" />
         </Switch>

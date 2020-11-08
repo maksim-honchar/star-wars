@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { updateData } from '../redux/planetsSlice'
+import { updateDataResults } from '../redux/planetsSlice'
 import { useHistory } from 'react-router-dom'
 
 import { NotFound } from './NotFound'
@@ -54,12 +54,17 @@ export const SinglePlanetPage = ({ match }) => {
                 .then(response => Promise.all(response.map(element => element.json())))
                 .then(result => result.forEach(resident => arrForResi.push(resident.name)))
                 .then(() => setResi(arrForResi))
-        } else {
-            fetch(`https://swapi.dev/api/planets/?search=${planetName}`)
-                .then(response => response.json())
-                .then(result => dispatch(updateData(result)))
+        }
+        else {
+            const results = () => dispatch => {
+                fetch(`https://swapi.dev/api/planets/?search=${planetName}`)
+                    .then(response => response.json())
+                    .then(planet => dispatch(updateDataResults(planet.results)))
+            }
+            dispatch(results())
         }
     }, [dispatch, planet, planetName])
+
 
     const onGoback = () => history.push('/')
 

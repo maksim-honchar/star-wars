@@ -32,7 +32,7 @@ export const NotFound = () => {
                 <CardContent>
                     <Typography variant="h4" gutterBottom>
                         Not found!
-                </Typography>
+                    </Typography>
                     <hr />
                 </CardContent>
                 <CardActions>

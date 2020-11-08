@@ -1,7 +1,6 @@
-/* eslint-disable no-use-before-define */
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { selectCount, updateSearchResult } from '../redux/planetsSlice'
+import { selectCount, updateDataCount } from '../redux/planetsSlice'
 import { useHistory } from 'react-router-dom'
 
 import TextField from '@material-ui/core/TextField'
@@ -13,6 +12,7 @@ export const AutoSearch = () => {
     const history = useHistory()
     const amountPlanets = useSelector(selectCount)
 
+
     const [allPlanets, setAllPlanets] = useState([])
     const [value, setValue] = useState(null)
 
@@ -22,19 +22,10 @@ export const AutoSearch = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        const asyncRequestData = () => async (dispatch) => {
-            const response = await fetch(`https://swapi.dev/api/planets/?search=${value}`)
-            if (response.ok) {
-                const searchPlanet = await response.json()
-                dispatch(updateSearchResult(searchPlanet.results))
-            } else {
-                console.log('HTTP error: ' + response.status)
-            }
-        }
-        dispatch(asyncRequestData())
-        history.push('/planets/search')
+        history.push(`/planets/${value}`)
         setValue('')
     }
+
 
     useEffect(() => {
         let addPlanets = []
@@ -47,6 +38,13 @@ export const AutoSearch = () => {
                     .then(counter += 1)
             }
             setAllPlanets(addPlanets)
+        } else {
+            const fetchCount = () => dispatch => {
+                fetch('http://swapi.dev/api/planets/')
+                    .then(response => response.json())
+                    .then(result => dispatch(updateDataCount(result.count)))
+            }
+            dispatch(fetchCount())
         }
     }, [amountPlanets, dispatch])
 
