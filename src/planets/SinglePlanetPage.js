@@ -88,7 +88,7 @@ export const SinglePlanetPage = ({ match }) => {
         }
     }, [dispatch, planet, planetName])
 
-    const onGoback = () => history.push('/')
+    const onGoback = () => history.push('/planets')
 
     if (!planet) {
         return (

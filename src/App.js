@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom'
 
 import { TopBar } from './app/TopBar'
+import { HomePage } from './app/HomePage'
 import { PlanetsPage } from './planets/PlanetsPage'
 import { SinglePlanetPage } from './planets/SinglePlanetPage'
 
@@ -23,10 +24,11 @@ function App() {
             path="/"
             render={() => (
               <React.Fragment>
-                <PlanetsPage />
+                <HomePage />
               </React.Fragment>
             )}
           />
+          <Route exact path="/planets/" component={PlanetsPage} />
           <Route exact path="/planets/:planetName" component={SinglePlanetPage} />
           <Redirect to="/" />
         </Switch>
