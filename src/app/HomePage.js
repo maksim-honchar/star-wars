@@ -9,6 +9,8 @@ import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import CardMedia from '@material-ui/core/CardMedia'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
 import planets from './pics/planets.jpg'
 
 const useStyles = makeStyles({
@@ -37,6 +39,15 @@ export const HomePage = () => {
 
     return (
         <section>
+            <React.Fragment>
+                <AppBar position="static">
+                    <Toolbar className={classes.toolbar}>
+                        <Typography className={classes.title} variant="h6" noWrap>
+                            Star Wars
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
+            </React.Fragment>
             <Link to="planets" className={classes.link}>
                 <Card className={classes.card}>
                     <CardActionArea>
@@ -49,7 +60,7 @@ export const HomePage = () => {
                         />
                         <CardContent>
                             <Typography gutterBottom variant="h5" component="h2">
-                                Planets
+                                PLANETS
                             </Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
                                 Planets in the universe Star Wars

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { updateDataResults } from './planetsSlice'
 import { useHistory } from 'react-router-dom'
 
+import { TopBar } from '../app/TopBar'
 import { NotFound } from '../app/NotFound'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -98,6 +99,7 @@ export const SinglePlanetPage = ({ match }) => {
 
     return (
         <section>
+            <TopBar />
             <div style={{ backgroundColor: '#e0e0e0' }}>
                 <Card className={classes.card} variant="outlined">
                     <CardContent>

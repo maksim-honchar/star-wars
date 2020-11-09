@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { updateData, updateCurrentPage, selectCount, selectPlanets, selectNext, selectPrevious, selectCurrentPage } from './planetsSlice'
 import { useDispatch, useSelector } from 'react-redux'
 
+import { TopBar } from '../app/TopBar'
+
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
@@ -11,8 +13,6 @@ import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import TablePagination from '@material-ui/core/TablePagination'
 import CircularProgress from '@material-ui/core/CircularProgress'
-
-
 
 const useStyles = makeStyles({
     card: {
@@ -109,6 +109,7 @@ export const PlanetsPage = () => {
 
     return (
         <section>
+            <TopBar />
             {
                 listsPlanet.length < 4 ?
                     <div className={classes.spinner}>

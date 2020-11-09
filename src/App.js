@@ -17,7 +17,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <TopBar />
+        {/* <TopBar /> */}
         <Switch>
           <Route
             exact
