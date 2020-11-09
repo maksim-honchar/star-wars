@@ -41,7 +41,7 @@ const useStyles = makeStyles({
 })
 
 
-export const PlanetsPage = () => {
+export const FilmsPage = () => {
     const classes = useStyles()
     const dispatch = useDispatch()
 

@@ -7,8 +7,7 @@ import {
   Redirect,
 } from 'react-router-dom'
 
-import { TopBar } from './app/TopBar'
-import { HomePage } from './app/HomePage'
+import { HomePage } from './app/homepage/HomePage'
 import { PlanetsPage } from './planets/PlanetsPage'
 import { SinglePlanetPage } from './planets/SinglePlanetPage'
 
@@ -17,7 +16,6 @@ function App() {
   return (
     <div className="App">
       <Router>
-        {/* <TopBar /> */}
         <Switch>
           <Route
             exact
