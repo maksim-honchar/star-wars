@@ -7,9 +7,9 @@ import {
   Redirect,
 } from 'react-router-dom'
 
-import { TopBar } from './components/TopBar'
-import { HomePage } from './components/HomePage'
-import { SinglePlanetPage } from './components/SinglePlanetPage'
+import { TopBar } from './app/TopBar'
+import { PlanetsPage } from './planets/PlanetsPage'
+import { SinglePlanetPage } from './planets/SinglePlanetPage'
 
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
             path="/"
             render={() => (
               <React.Fragment>
-                <HomePage />
+                <PlanetsPage />
               </React.Fragment>
             )}
           />
@@ -35,4 +35,4 @@ function App() {
   )
 }
 
-export default App;
+export default App

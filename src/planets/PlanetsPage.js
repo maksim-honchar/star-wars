@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { updateData, updateCurrentPage, selectCount, selectPlanets, selectNext, selectPrevious, selectCurrentPage } from '../redux/planetsSlice'
+import { updateData, updateCurrentPage, selectCount, selectPlanets, selectNext, selectPrevious, selectCurrentPage } from './planetsSlice'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -41,7 +41,7 @@ const useStyles = makeStyles({
 })
 
 
-export const HomePage = () => {
+export const PlanetsPage = () => {
     const classes = useStyles()
     const dispatch = useDispatch()
 

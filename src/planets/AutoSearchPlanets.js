@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { selectCount, updateDataCount } from '../redux/planetsSlice'
+import { selectCount, updateDataCount } from './planetsSlice'
 import { useHistory } from 'react-router-dom'
 
 import TextField from '@material-ui/core/TextField'
 import Autocomplete from '@material-ui/lab/Autocomplete'
 
 
-export const AutoSearch = () => {
+export const AutoSearchPlanets = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const amountPlanets = useSelector(selectCount)

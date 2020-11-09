@@ -1,14 +1,14 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { updateData, updateCurrentPage } from '../redux/planetsSlice'
+import { updateData, updateCurrentPage } from '../planets/planetsSlice'
 
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 
-import { AutoSearch } from './AutoSearch'
+import { AutoSearchPlanets } from '../planets/AutoSearchPlanets'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -65,7 +65,7 @@ export const TopBar = () => {
                             </Typography>
                         </div>
                         <div className={classes.search_field}>
-                            <AutoSearch />
+                            <AutoSearchPlanets />
                         </div>
                     </div>
                 </Toolbar>
