@@ -10,7 +10,7 @@ const planetsSlice = createSlice({
             previous: null,
             results: []
         },
-        currentPage: null,
+        currentPage: 0,
     },
     reducers: {
         updateData(state, action) {

@@ -27,11 +27,13 @@ const useStyles = makeStyles({
         width: 100,
         margin: '0 auto'
     },
-    wrapper_residents: {
+    wrapper_bottomBlock: {
         backgroundColor: '#eceff1',
         borderRadius: 5,
         padding: 20,
-        minHeight: 300
+        minHeight: 300,
+        display: 'flex',
+        justifyContent: 'space-around'
     }
 })
 
@@ -42,6 +44,7 @@ export const SinglePlanetPage = ({ match }) => {
     const classes = useStyles()
     const history = useHistory()
     const [resi, setResi] = useState([])
+    const [films, setFilms] = useState([])
 
     const planet = useSelector(state => state.planets.data.results.find(planet => planet.name === planetName))
 
@@ -65,16 +68,33 @@ export const SinglePlanetPage = ({ match }) => {
         }
     }, [dispatch, planet, planetName])
 
+    useEffect(() => {
+        if (planet) {
+            const arrForFilms = []
+            const { films } = planet
+            const requests = films.map(film => fetch(film))
+            Promise.all(requests)
+                .then(response => Promise.all(response.map(element => element.json())))
+                .then(result => result.forEach(film => arrForFilms.push(film.title)))
+                .then(() => setFilms(arrForFilms))
+        }
+        else {
+            const results = () => dispatch => {
+                fetch(`https://swapi.dev/api/planets/?search=${planetName}`)
+                    .then(response => response.json())
+                    .then(planet => dispatch(updateDataResults(planet.results)))
+            }
+            dispatch(results())
+        }
+    }, [dispatch, planet, planetName])
 
     const onGoback = () => history.push('/')
-
 
     if (!planet) {
         return (
             <NotFound />
         )
     }
-
 
     return (
         <section>
@@ -110,18 +130,33 @@ export const SinglePlanetPage = ({ match }) => {
                             Population: {planet.population}
                         </Typography>
                         <br />
-                        <div className={classes.wrapper_residents}>
-                            <Typography variant="h6" gutterBottom>
-                                Residents
-                            </Typography>
-                            {
-                                planet.residents.length === 0 ?
-                                    <Typography color="error" className={classes.no_residents}>No residents</Typography>
-                                    :
-                                    resi.length < 1 ?
-                                        <CircularProgress />
-                                        : resi.map(name => <Typography variant="subtitle1" className={classes.residents} key={name}>{name}</Typography>)
-                            }
+                        <div className={classes.wrapper_bottomBlock}>
+                            <div className={classes.residents}>
+                                <Typography variant="h6" gutterBottom>
+                                    Residents
+                                </Typography>
+                                {
+                                    planet.residents.length === 0 ?
+                                        <Typography color="error" className={classes.no_residents}>No residents</Typography>
+                                        :
+                                        resi.length < 1 ?
+                                            <CircularProgress />
+                                            : resi.map(name => <Typography variant="subtitle1" key={name}>{name}</Typography>)
+                                }
+                            </div>
+                            <div className={classes.films}>
+                                <Typography variant="h6" gutterBottom>
+                                    Films
+                                </Typography>
+                                {
+                                    planet.films.length === 0 ?
+                                        <Typography color="error" className={classes.no_residents}>No films</Typography>
+                                        :
+                                        films.length < 1 ?
+                                            <CircularProgress />
+                                            : films.map(name => <Typography variant="subtitle1" key={name}>{name}</Typography>)
+                                }
+                            </div>
                         </div>
                     </CardContent>
                     <CardActions>

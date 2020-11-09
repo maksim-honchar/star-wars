@@ -29,13 +29,11 @@ export const AutoSearch = () => {
 
     useEffect(() => {
         let addPlanets = []
-        let counter = 1
         if (amountPlanets) {
-            while (counter <= amountPlanets) {
-                fetch(`http://swapi.dev/api/planets/${counter}`)
+            for (let i = 1; i <= amountPlanets; i++) {
+                fetch(`http://swapi.dev/api/planets/${i}`)
                     .then(response => response.json())
                     .then(planet => addPlanets.push(planet.name))
-                    .then(counter += 1)
             }
             setAllPlanets(addPlanets)
         } else {
