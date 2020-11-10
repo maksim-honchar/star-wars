@@ -10,6 +10,7 @@ import {
 import { HomePage } from './app/homepage/HomePage'
 import { PlanetsPage } from './planets/PlanetsPage'
 import { SinglePlanetPage } from './planets/SinglePlanetPage'
+import { FilmsPage } from './films/FilmsPage'
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
               </React.Fragment>
             )}
           />
+          <Route exact path="/films/" component={FilmsPage} />
           <Route exact path="/planets/" component={PlanetsPage} />
           <Route exact path="/planets/:planetName" component={SinglePlanetPage} />
           <Redirect to="/" />

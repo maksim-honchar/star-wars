@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { updateData, updateCurrentPage, selectCount, selectPlanets, selectNext, selectPrevious, selectCurrentPage } from './planetsSlice'
+import { selectCount, selectFilms, selectNext, selectPrevious, selectCurrentPage, updateData, updateCurrentPage } from './filmsSlice'
 import { useDispatch, useSelector } from 'react-redux'
+import { TopBarFilms } from './TopBarFilms'
 
-import { TopBarPlanets } from './TopBarPlanets'
+// import anewhope from './pics/anewhope.jpeg'  
 
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
@@ -14,9 +15,12 @@ import Typography from '@material-ui/core/Typography'
 import TablePagination from '@material-ui/core/TablePagination'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
+
+
 const useStyles = makeStyles({
     card: {
         minWidth: 375,
+        height: 375,
         margin: 10
     },
     lists_planet: {
@@ -37,6 +41,9 @@ const useStyles = makeStyles({
     },
     table_pagination: {
         marginTop: 30
+    },
+    opening_crawl: {
+        width: 350
     }
 })
 
@@ -46,12 +53,12 @@ export const FilmsPage = () => {
     const dispatch = useDispatch()
 
     const count = useSelector(selectCount)
-    const planets = useSelector(selectPlanets)
+    const films = useSelector(selectFilms)
     const nextUrlPage = useSelector(selectNext)
     const prevUrlPage = useSelector(selectPrevious)
     const currentPage = useSelector(selectCurrentPage)
 
-    const [url, setUrl] = useState(`https://swapi.dev/api/planets/?page=${currentPage + 1}`)
+    const [url, setUrl] = useState(`https://swapi.dev/api/films/?page=${currentPage + 1}`)
 
     const handleChangePage = (event, newPage) => {
         if (currentPage < newPage) {
@@ -63,26 +70,32 @@ export const FilmsPage = () => {
         }
     }
 
-    let listsPlanet
+    let listFilms
 
-    if (planets) {
-        listsPlanet = planets.map(planet => (
-            <Link to={`/planets/${planet.name}`} className={classes.link} key={planet.name}>
+    if (films) {
+        listFilms = films.map(film => (
+            <Link to={`/films/${film.title}`} className={classes.link} key={film.title}>
                 <Card className={classes.card} variant="outlined" >
                     <CardContent>
-                        <Typography variant="h4" gutterBottom>
-                            {planet.name}
-                        </Typography>
-                        <hr />
-                        <br />
-                        <Typography component="p" >
-                            Climate: <span className={classes.headlines}>{planet.climate}</span>
+                        <Typography variant="h5" gutterBottom>
+                            {film.title}
                         </Typography>
                         <br />
                         <Typography component="p" >
-                            Population:  <span className={classes.headlines}>{planet.population}</span>
+                            Episode: <span className={classes.headlines}>{film.episode_id}</span>
                         </Typography>
+                        <br />
+                        <Typography component="p" >
+                            Year: <span className={classes.headlines}>{film.release_date.substring(0, 4)}</span>
+                        </Typography>
+                        <br />
+                        <div className={classes.opening_crawl}>
+                            <Typography component="p" >
+                                {`${film.opening_crawl.substring(0, 196)} ...`}
+                            </Typography>
+                        </div>
                     </CardContent>
+                    <br />
                     <CardActions>
                         <Button size="small">
                             Learn More
@@ -98,6 +111,7 @@ export const FilmsPage = () => {
             const response = await fetch(url)
             if (response.ok) {
                 const result = await response.json()
+                console.log(result)
                 dispatch(updateData(result))
             } else {
                 console.log('HTTP error: ' + response.status)
@@ -109,16 +123,16 @@ export const FilmsPage = () => {
 
     return (
         <section>
-            <TopBarPlanets />
+            <TopBarFilms />
             {
-                listsPlanet.length < 4 ?
+                listFilms.length < 4 ?
                     <div className={classes.spinner}>
                         <CircularProgress />
                     </div>
                     :
                     <React.Fragment>
                         <div className={classes.lists_planet}>
-                            {listsPlanet}
+                            {listFilms}
                         </div>
                         <div className={classes.table_pagination}>
                             <TablePagination
