@@ -98,15 +98,7 @@ export const SingleFilmPage = ({ match }) => {
                 .then(result => result.forEach(planet => arrForPlanets.push(planet.name)))
                 .then(() => setFilmPlanets(arrForPlanets))
         }
-        else {
-            const results = () => dispatch => {
-                fetch(`https://swapi.dev/api/planets/?search=${filmTitle}`)
-                    .then(response => response.json())
-                    .then(film => dispatch(updateDataResults(film.results)))
-            }
-            dispatch(results())
-        }
-    }, [dispatch, film, filmTitle])
+    }, [film])
 
     useEffect(() => {
         if (film) {
@@ -118,15 +110,8 @@ export const SingleFilmPage = ({ match }) => {
                 .then(result => result.forEach(starship => arrForStarships.push(starship.name)))
                 .then(() => setFilmStarships(arrForStarships))
         }
-        else {
-            const results = () => dispatch => {
-                fetch(`https://swapi.dev/api/planets/?search=${filmTitle}`)
-                    .then(response => response.json())
-                    .then(film => dispatch(updateDataResults(film.results)))
-            }
-            dispatch(results())
-        }
-    }, [dispatch, film, filmTitle])
+
+    }, [film])
 
     useEffect(() => {
         if (film) {
@@ -138,15 +123,7 @@ export const SingleFilmPage = ({ match }) => {
                 .then(result => result.forEach(vehicle => arrForVehicles.push(vehicle.name)))
                 .then(() => setFilmVehicles(arrForVehicles))
         }
-        else {
-            const results = () => dispatch => {
-                fetch(`https://swapi.dev/api/planets/?search=${filmTitle}`)
-                    .then(response => response.json())
-                    .then(film => dispatch(updateDataResults(film.results)))
-            }
-            dispatch(results())
-        }
-    }, [dispatch, film, filmTitle])
+    }, [film])
 
     useEffect(() => {
         if (film) {
@@ -158,15 +135,7 @@ export const SingleFilmPage = ({ match }) => {
                 .then(result => result.forEach(form => arrForSpecies.push(form.name)))
                 .then(() => setFilmSpecies(arrForSpecies))
         }
-        else {
-            const results = () => dispatch => {
-                fetch(`https://swapi.dev/api/planets/?search=${filmTitle}`)
-                    .then(response => response.json())
-                    .then(film => dispatch(updateDataResults(film.results)))
-            }
-            dispatch(results())
-        }
-    }, [dispatch, film, filmTitle])
+    }, [film])
 
 
     const onGoback = () => history.push('/films')
