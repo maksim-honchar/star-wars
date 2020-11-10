@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { updateDataResults } from './filmsSlice'
 import { useHistory } from 'react-router-dom'
 
-// import { TopBarPlanets } from './TopBarPlanets'
+import { TopBarFilms } from './TopBarFilms'
 import { NotFound } from '../app/NotFound'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -67,7 +67,6 @@ export const SingleFilmPage = ({ match }) => {
 
     const film = useSelector(state => state.films.data.results.find(film => film.title === filmTitle))
     // console.log(film)
-
 
     useEffect(() => {
         if (film) {
@@ -174,7 +173,10 @@ export const SingleFilmPage = ({ match }) => {
 
     if (!film) {
         return (
-            <NotFound />
+            <React.Fragment>
+                <TopBarFilms />
+                <NotFound />
+            </React.Fragment>
         )
     }
 
@@ -223,7 +225,7 @@ export const SingleFilmPage = ({ match }) => {
                         <div className={classes.planets}>
                             <Typography variant="h6" gutterBottom>
                                 Planets
-                    </Typography>
+                            </Typography>
                             {
                                 film.planets.length === 0 ?
                                     <Typography color="error" className={classes.no_residents}>No films</Typography>
@@ -234,7 +236,7 @@ export const SingleFilmPage = ({ match }) => {
                         <div className={classes.starships}>
                             <Typography variant="h6" gutterBottom>
                                 Starships
-                    </Typography>
+                            </Typography>
                             {
                                 film.starships.length === 0 ?
                                     <Typography color="error" className={classes.no_residents}>No starships</Typography>
@@ -247,7 +249,7 @@ export const SingleFilmPage = ({ match }) => {
                         <div className={classes.vehicles}>
                             <Typography variant="h6" gutterBottom>
                                 Vehicles
-                        </Typography>
+                            </Typography>
                             {
                                 film.vehicles.length === 0 ?
                                     <Typography color="error" className={classes.no_residents}>No vehicles</Typography>
@@ -258,7 +260,7 @@ export const SingleFilmPage = ({ match }) => {
                         <div className={classes.species}>
                             <Typography variant="h6" gutterBottom>
                                 Species
-                        </Typography>
+                            </Typography>
                             {
                                 film.species.length === 0 ?
                                     <Typography color="error" className={classes.no_residents}>No species</Typography>
@@ -272,14 +274,14 @@ export const SingleFilmPage = ({ match }) => {
             <CardActions>
                 <Button onClick={onGoback}>
                     Go Back
-            </Button>
+                </Button>
             </CardActions>
         </Card>
     )
 
     return (
         <section>
-            {/* <TopBarPlanets /> */}
+            <TopBarFilms />
             <div className={classes.wrapper}>
                 {
                     filmCharacters.length < 1 ||

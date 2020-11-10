@@ -8,7 +8,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 
-import { AutoSearchPlanets } from '../planets/AutoSearchPlanets'
+import { AutoSearchFilms } from './AutoSearchFilms'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -65,7 +65,7 @@ export const TopBarFilms = () => {
                             </Typography>
                         </div>
                         <div className={classes.search_field}>
-                            <AutoSearchPlanets />
+                            <AutoSearchFilms />
                         </div>
                     </div>
                 </Toolbar>
