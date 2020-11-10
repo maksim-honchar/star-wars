@@ -16,7 +16,7 @@ import Button from '@material-ui/core/Button'
 
 const useStyles = makeStyles({
     card: {
-        maxWidth: 600,
+        maxWidth: 700,
         minHeight: '90vh',
         margin: 'auto',
         marginTop: 35

@@ -8,9 +8,10 @@ import {
 } from 'react-router-dom'
 
 import { HomePage } from './app/homepage/HomePage'
+import { FilmsPage } from './films/FilmsPage'
+import { SingleFilmPage } from './films/SingleFilmPage'
 import { PlanetsPage } from './planets/PlanetsPage'
 import { SinglePlanetPage } from './planets/SinglePlanetPage'
-import { FilmsPage } from './films/FilmsPage'
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
             )}
           />
           <Route exact path="/films/" component={FilmsPage} />
+          <Route exact path="/films/:filmTitle" component={SingleFilmPage} />
           <Route exact path="/planets/" component={PlanetsPage} />
           <Route exact path="/planets/:planetName" component={SinglePlanetPage} />
           <Redirect to="/" />
