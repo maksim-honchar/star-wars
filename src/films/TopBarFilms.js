@@ -51,7 +51,7 @@ export const TopBarFilms = () => {
         }
         dispatch(asyncRequestData())
         dispatch(updateCurrentPage(0))
-        history.push('/')
+        history.push('/films')
     }
 
     return (
@@ -61,7 +61,7 @@ export const TopBarFilms = () => {
                     <div className={classes.wrapper4_title_search}>
                         <div className={classes.title}>
                             <Typography className={classes.title} variant="h6" noWrap>
-                                <span className={classes.link} onClick={toStartPage}>Star Wars</span>
+                                <span className={classes.link} onClick={toStartPage}>Star Wars - films</span>
                             </Typography>
                         </div>
                         <div className={classes.search_field}>

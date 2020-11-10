@@ -51,7 +51,7 @@ export const TopBarPlanets = () => {
         }
         dispatch(asyncRequestData())
         dispatch(updateCurrentPage(0))
-        history.push('/')
+        history.push('/planets')
     }
 
     return (
@@ -61,7 +61,7 @@ export const TopBarPlanets = () => {
                     <div className={classes.wrapper4_title_search}>
                         <div className={classes.title}>
                             <Typography className={classes.title} variant="h6" noWrap>
-                                <span className={classes.link} onClick={toStartPage}>Star Wars</span>
+                                <span className={classes.link} onClick={toStartPage}>Star Wars - planets</span>
                             </Typography>
                         </div>
                         <div className={classes.search_field}>
