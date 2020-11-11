@@ -3,9 +3,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { updateDataResults } from './planetsSlice'
 import { useHistory } from 'react-router-dom'
 
-import { TopBarPlanets } from './TopBarPlanets'
-import { NotFound } from '../app/NotFound'
-
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
@@ -14,17 +11,23 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 import CardActions from '@material-ui/core/CardActions'
 import Button from '@material-ui/core/Button'
 
+import { TopBarPlanets } from './TopBarPlanets'
+import { LeftMenu } from '../app/LeftMenu'
+import { NotFound } from '../app/NotFound'
+
 const useStyles = makeStyles({
     wrapper: {
-        backgroundColor: '#e0e0e0'
+        backgroundColor: '#e0e0e0',
+        display: 'flex'
+    },
+    content: {
+        margin: '35px 350px'
     },
     card: {
-        maxWidth: 700,
+        width: 700,
         minHeight: '90vh',
-        margin: 'auto',
-        marginTop: 35
     },
-    no_residents: {
+    no_values: {
         border: '1px solid #ff9800',
         padding: 3,
         borderRadius: 5,
@@ -139,14 +142,12 @@ export const SinglePlanetPage = ({ match }) => {
                     <div className={classes.residents}>
                         <Typography variant="h6" gutterBottom>
                             Residents
-                    </Typography>
+                         </Typography>
                         {
                             planet.residents.length === 0 ?
-                                <Typography color="error" className={classes.no_residents}>No residents</Typography>
+                                <Typography color="error" className={classes.no_values}>No residents</Typography>
                                 :
-                                resi.length < 1 ?
-                                    <CircularProgress />
-                                    : resi.map(name => <Typography variant="subtitle1" key={name}>{name}</Typography>)
+                                resi.map(name => <Typography variant="subtitle1" key={name}>{name}</Typography>)
                         }
                     </div>
                     <div className={classes.films}>
@@ -155,11 +156,9 @@ export const SinglePlanetPage = ({ match }) => {
                     </Typography>
                         {
                             planet.films.length === 0 ?
-                                <Typography color="error" className={classes.no_residents}>No films</Typography>
+                                <Typography color="error" className={classes.no_values}>No films</Typography>
                                 :
-                                films.length < 1 ?
-                                    <CircularProgress />
-                                    : films.map(name => <Typography variant="subtitle1" key={name}>{name}</Typography>)
+                                films.map(name => <Typography variant="subtitle1" key={name}>{name}</Typography>)
                         }
                     </div>
                 </div>
@@ -176,9 +175,14 @@ export const SinglePlanetPage = ({ match }) => {
         <section>
             <TopBarPlanets />
             <div className={classes.wrapper}>
-                {
-                    resi.length < 1 || films.length < 1 ? <div className={classes.spinner}><CircularProgress /></div> : showPage
-                }
+                <div className={classes.leftMenu}>
+                    <LeftMenu />
+                </div>
+                <div className={classes.content}>
+                    {
+                        showPage
+                    }
+                </div>
             </div>
         </section>
     )

@@ -4,7 +4,7 @@ import { selectCount, selectFilms, selectNext, selectPrevious, selectCurrentPage
 import { useDispatch, useSelector } from 'react-redux'
 import { TopBarFilms } from './TopBarFilms'
 
-// import anewhope from './pics/anewhope.jpeg'  
+import { LeftMenu } from '../app/LeftMenu'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
@@ -18,6 +18,9 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 
 
 const useStyles = makeStyles({
+    wrapper: {
+        display: 'flex',
+    },
     card: {
         minWidth: 375,
         height: 375,
@@ -37,7 +40,7 @@ const useStyles = makeStyles({
         fontWeight: 'bold'
     },
     spinner: {
-        margin: 300
+        margin: '300px 650px'
     },
     table_pagination: {
         marginTop: 30
@@ -124,28 +127,35 @@ export const FilmsPage = () => {
     return (
         <section>
             <TopBarFilms />
-            {
-                listFilms.length < 4 ?
-                    <div className={classes.spinner}>
-                        <CircularProgress />
-                    </div>
-                    :
-                    <React.Fragment>
-                        <div className={classes.lists_planet}>
-                            {listFilms}
-                        </div>
-                        <div className={classes.table_pagination}>
-                            <TablePagination
-                                rowsPerPageOptions={[]}
-                                component="div"
-                                count={count}
-                                rowsPerPage={10}
-                                page={currentPage}
-                                onChangePage={handleChangePage}
-                            />
-                        </div>
-                    </React.Fragment>
-            }
+            <div className={classes.wrapper}>
+                <div className={classes.leftMenu}>
+                    <LeftMenu />
+                </div>
+                <div className={classes.content}>
+                    {
+                        listFilms.length < 4 ?
+                            <div className={classes.spinner}>
+                                <CircularProgress />
+                            </div>
+                            :
+                            <React.Fragment>
+                                <div className={classes.lists_planet}>
+                                    {listFilms}
+                                </div>
+                                <div className={classes.table_pagination}>
+                                    <TablePagination
+                                        rowsPerPageOptions={[]}
+                                        component="div"
+                                        count={count}
+                                        rowsPerPage={10}
+                                        page={currentPage}
+                                        onChangePage={handleChangePage}
+                                    />
+                                </div>
+                            </React.Fragment>
+                    }
+                </div>
+            </div>
         </section>
     )
 }

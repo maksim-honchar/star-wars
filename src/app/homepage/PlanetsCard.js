@@ -14,8 +14,11 @@ import planets from '../pics/planets.jpg'
 
 const useStyles = makeStyles({
     card: {
-        maxWidth: 345,
-        margin: 20
+        width: 345,
+        margin: 50
+    },
+    learnMore: {
+        color: '#212121'
     },
     link: {
         textDecoration: 'none'
@@ -47,7 +50,7 @@ export const PlanetsCard = () => {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button size="small" color="primary">
+                    <Button className={classes.learnMore} size="small" color="primary">
                         Learn More
                     </Button>
                 </CardActions>

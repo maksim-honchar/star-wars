@@ -14,11 +14,14 @@ import films from '../pics/films.jpg'
 
 const useStyles = makeStyles({
     card: {
-        maxWidth: 345,
-        margin: 20
+        width: 345,
+        margin: 50
+    },
+    learnMore: {
+        color: '#212121'
     },
     link: {
-        textDecoration: 'none'
+        textDecoration: 'none',
     }
 })
 
@@ -47,9 +50,9 @@ export const FilmsCard = () => {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button size="small" color="primary">
+                    <Button className={classes.learnMore} size="small" color="primary">
                         Learn More
-            </Button>
+                    </Button>
                 </CardActions>
             </Card>
         </Link>

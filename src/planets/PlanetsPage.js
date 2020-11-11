@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom'
 import { updateData, updateCurrentPage, selectCount, selectPlanets, selectNext, selectPrevious, selectCurrentPage } from './planetsSlice'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { TopBarPlanets } from './TopBarPlanets'
-
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
@@ -14,7 +12,13 @@ import Typography from '@material-ui/core/Typography'
 import TablePagination from '@material-ui/core/TablePagination'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
+import { TopBarPlanets } from './TopBarPlanets'
+import { LeftMenu } from '../app/LeftMenu'
+
 const useStyles = makeStyles({
+    wrapper: {
+        display: 'flex',
+    },
     card: {
         minWidth: 375,
         margin: 10
@@ -33,7 +37,7 @@ const useStyles = makeStyles({
         fontWeight: 'bold'
     },
     spinner: {
-        margin: 300
+        margin: '300px 650px'
     },
     table_pagination: {
         marginTop: 30
@@ -110,28 +114,35 @@ export const PlanetsPage = () => {
     return (
         <section>
             <TopBarPlanets />
-            {
-                listsPlanet.length < 4 ?
-                    <div className={classes.spinner}>
-                        <CircularProgress />
-                    </div>
-                    :
-                    <React.Fragment>
-                        <div className={classes.lists_planet}>
-                            {listsPlanet}
-                        </div>
-                        <div className={classes.table_pagination}>
-                            <TablePagination
-                                rowsPerPageOptions={[]}
-                                component="div"
-                                count={count}
-                                rowsPerPage={10}
-                                page={currentPage}
-                                onChangePage={handleChangePage}
-                            />
-                        </div>
-                    </React.Fragment>
-            }
+            <div className={classes.wrapper}>
+                <div className={classes.leftMenu}>
+                    <LeftMenu />
+                </div>
+                <div className={classes.content}>
+                    {
+                        listsPlanet.length < 4 ?
+                            <div className={classes.spinner}>
+                                <CircularProgress />
+                            </div>
+                            :
+                            <React.Fragment>
+                                <div className={classes.lists_planet}>
+                                    {listsPlanet}
+                                </div>
+                                <div className={classes.table_pagination}>
+                                    <TablePagination
+                                        rowsPerPageOptions={[]}
+                                        component="div"
+                                        count={count}
+                                        rowsPerPage={10}
+                                        page={currentPage}
+                                        onChangePage={handleChangePage}
+                                    />
+                                </div>
+                            </React.Fragment>
+                    }
+                </div>
+            </div>
         </section>
     )
 }

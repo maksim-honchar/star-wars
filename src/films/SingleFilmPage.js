@@ -2,10 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { updateDataResults } from './filmsSlice'
 import { useHistory } from 'react-router-dom'
-
-import { TopBarFilms } from './TopBarFilms'
-import { NotFound } from '../app/NotFound'
-
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
@@ -14,17 +10,23 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 import CardActions from '@material-ui/core/CardActions'
 import Button from '@material-ui/core/Button'
 
+import { LeftMenu } from '../app/LeftMenu'
+import { TopBarFilms } from './TopBarFilms'
+import { NotFound } from '../app/NotFound'
+
 const useStyles = makeStyles({
     wrapper: {
-        backgroundColor: '#e0e0e0'
+        backgroundColor: '#e0e0e0',
+        display: 'flex'
+    },
+    content: {
+        margin: '35px 350px'
     },
     card: {
-        maxWidth: 700,
+        width: 700,
         minHeight: '90vh',
-        margin: 'auto',
-        marginTop: 35
     },
-    no_residents: {
+    no_values: {
         border: '1px solid #ff9800',
         padding: 3,
         borderRadius: 5,
@@ -183,10 +185,10 @@ export const SingleFilmPage = ({ match }) => {
                         <div className={classes.characters}>
                             <Typography variant="h6" gutterBottom>
                                 Characters
-                        </Typography>
+                            </Typography>
                             {
                                 film.characters.length === 0 ?
-                                    <Typography color="error" className={classes.no_residents}>No characters</Typography>
+                                    <Typography color="error" className={classes.no_values}>No characters</Typography>
                                     :
                                     filmCharacters.map(name => <Typography variant="subtitle1" key={name}>{name}</Typography>)
                             }
@@ -197,7 +199,7 @@ export const SingleFilmPage = ({ match }) => {
                             </Typography>
                             {
                                 film.planets.length === 0 ?
-                                    <Typography color="error" className={classes.no_residents}>No films</Typography>
+                                    <Typography color="error" className={classes.no_values}>No films</Typography>
                                     :
                                     filmPlanets.map(name => <Typography variant="subtitle1" key={name}>{name}</Typography>)
                             }
@@ -208,7 +210,7 @@ export const SingleFilmPage = ({ match }) => {
                             </Typography>
                             {
                                 film.starships.length === 0 ?
-                                    <Typography color="error" className={classes.no_residents}>No starships</Typography>
+                                    <Typography color="error" className={classes.no_values}>No starships</Typography>
                                     :
                                     filmStarships.map(name => <Typography variant="subtitle1" key={name}>{name}</Typography>)
                             }
@@ -221,7 +223,7 @@ export const SingleFilmPage = ({ match }) => {
                             </Typography>
                             {
                                 film.vehicles.length === 0 ?
-                                    <Typography color="error" className={classes.no_residents}>No vehicles</Typography>
+                                    <Typography color="error" className={classes.no_values}>No vehicles</Typography>
                                     :
                                     filmVehicles.map(name => <Typography variant="subtitle1" key={name}>{name}</Typography>)
                             }
@@ -232,7 +234,7 @@ export const SingleFilmPage = ({ match }) => {
                             </Typography>
                             {
                                 film.species.length === 0 ?
-                                    <Typography color="error" className={classes.no_residents}>No species</Typography>
+                                    <Typography color="error" className={classes.no_values}>No species</Typography>
                                     :
                                     filmSpecies.map(name => <Typography variant="subtitle1" key={name}>{name}</Typography>)
                             }
@@ -252,14 +254,19 @@ export const SingleFilmPage = ({ match }) => {
         <section>
             <TopBarFilms />
             <div className={classes.wrapper}>
-                {
-                    filmCharacters.length < 1 ||
-                        filmPlanets.length < 1 ||
-                        filmStarships.length < 1 ||
-                        filmVehicles.length < 1 ||
-                        filmSpecies.length < 1 ?
-                        <div className={classes.spinner}><CircularProgress /></div> : showPage
-                }
+                <div className={classes.LeftMenu}>
+                    <LeftMenu />
+                </div>
+                <div className={classes.content}>
+                    {
+                        filmCharacters.length < 1 ||
+                            filmPlanets.length < 1 ||
+                            filmStarships.length < 1 ||
+                            filmVehicles.length < 1 ||
+                            filmSpecies.length < 1 ?
+                            <div className={classes.spinner}><CircularProgress /></div> : showPage
+                    }
+                </div>
             </div>
         </section >
     )
