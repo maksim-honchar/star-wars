@@ -30,7 +30,7 @@ export const PeopleCard = () => {
     const classes = useStyles()
 
     return (
-        <Link to="planets" className={classes.link}>
+        <Link to="people" className={classes.link}>
             <Card className={classes.card}>
                 <CardActionArea>
                     <CardMedia

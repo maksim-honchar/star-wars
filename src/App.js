@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom'
 
 import { HomePage } from './app/homepage/HomePage'
+import { PeoplePage } from './people/PeoplePage'
 import { FilmsPage } from './films/FilmsPage'
 import { SingleFilmPage } from './films/SingleFilmPage'
 import { PlanetsPage } from './planets/PlanetsPage'
@@ -28,6 +29,7 @@ function App() {
               </React.Fragment>
             )}
           />
+          <Route exact path="/people/" component={PeoplePage} />
           <Route exact path="/films/" component={FilmsPage} />
           <Route exact path="/films/:filmTitle" component={SingleFilmPage} />
           <Route exact path="/planets/" component={PlanetsPage} />

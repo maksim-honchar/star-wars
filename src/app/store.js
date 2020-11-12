@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
+import peopleReducer from '../people/peopleSlice'
 import planetsReducer from '../planets/planetsSlice'
 import filmsReducer from '../films/filmsSlice'
 
 export default configureStore({
   reducer: {
+    people: peopleReducer,
     planets: planetsReducer,
-    films: filmsReducer
+    films: filmsReducer,
   }
 })
