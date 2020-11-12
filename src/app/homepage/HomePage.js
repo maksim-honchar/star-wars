@@ -10,7 +10,8 @@ import { FilmsCard } from './FilmsCard'
 
 const useStyles = makeStyles({
     wraper4cards: {
-        display: 'flex'
+        display: 'flex',
+        justifyContent: 'space-around'
     }
 })
 

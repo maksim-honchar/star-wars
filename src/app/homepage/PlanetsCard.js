@@ -14,7 +14,7 @@ import planets from '../pics/planets.jpg'
 
 const useStyles = makeStyles({
     card: {
-        width: 345,
+        width: 400,
         margin: 50
     },
     learnMore: {

@@ -14,7 +14,7 @@ import films from '../pics/films.jpg'
 
 const useStyles = makeStyles({
     card: {
-        width: 345,
+        width: 400,
         margin: 50
     },
     learnMore: {
