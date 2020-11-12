@@ -5,13 +5,16 @@ import Typography from '@material-ui/core/Typography'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 
+import { PeopleCard } from './PeopleCard'
 import { PlanetsCard } from './PlanetsCard'
-import { FilmsCard } from './FilmsCard'
+import { MoviesCard } from './MoviesCard'
+import { SpeciesCard } from './SpeciesCard'
 
 const useStyles = makeStyles({
     wraper4cards: {
         display: 'flex',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
+        flexWrap: 'wrap',
     }
 })
 
@@ -31,8 +34,10 @@ export const HomePage = () => {
                 </AppBar>
             </React.Fragment>
             <div className={classes.wraper4cards}>
-                <FilmsCard />
+                <PeopleCard />
                 <PlanetsCard />
+                <MoviesCard />
+                <SpeciesCard />
             </div>
         </section>
     )

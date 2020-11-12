@@ -114,7 +114,6 @@ export const FilmsPage = () => {
             const response = await fetch(url)
             if (response.ok) {
                 const result = await response.json()
-                console.log(result)
                 dispatch(updateData(result))
             } else {
                 console.log('HTTP error: ' + response.status)

@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import CardMedia from '@material-ui/core/CardMedia'
 
-import films from '../pics/films.jpg'
+import species from '../pics/species.jpg'
 
 const useStyles = makeStyles({
     card: {
@@ -21,32 +21,32 @@ const useStyles = makeStyles({
         color: '#212121'
     },
     link: {
-        textDecoration: 'none',
+        textDecoration: 'none'
     }
 })
 
 
-export const FilmsCard = () => {
+export const SpeciesCard = () => {
     const classes = useStyles()
 
     return (
-        <Link to="films" className={classes.link}>
+        <Link to="planets" className={classes.link}>
             <Card className={classes.card}>
                 <CardActionArea>
                     <CardMedia
                         component="img"
-                        alt="films"
+                        alt="species"
                         height="140"
-                        image={films}
-                        title="Films"
+                        image={species}
+                        title="Species"
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
-                            FILMS
-                </Typography>
+                            SPICIES
+                        </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
-                            Star Wars movies
-                </Typography>
+                            Species in the Star Wars universe
+                        </Typography>
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
