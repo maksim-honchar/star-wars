@@ -26,7 +26,7 @@ export const LeftMenu = () => {
                 <ListItemIcon>
                     <AppsIcon />
                 </ListItemIcon>
-                <ListItemText primary={`${section.slice(0, 1).toUpperCase()}${section.slice(1).toLowerCase()}`} />
+                <ListItemText primary={`${section.slice(0, 1).toUpperCase()}${section.slice(1)}`} />
             </ListItem>
         </Link>
     ))

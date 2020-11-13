@@ -57,7 +57,7 @@ export const AutoSearchFilms = () => {
         <form onSubmit={handleSubmit}>
             <Autocomplete
                 size="small"
-                style={{ width: 300, backgroundColor: 'white' }}
+                style={{ width: 250, backgroundColor: 'white' }}
                 {...defaultProps}
                 id="controlled-demo"
                 value={value}

@@ -20,7 +20,7 @@ const useStyles = makeStyles({
         display: 'flex'
     },
     content: {
-        margin: '35px 350px'
+        margin: '35px auto'
     },
     card: {
         width: 700,
@@ -43,7 +43,8 @@ const useStyles = makeStyles({
     },
     spinner: {
         margin: 300
-    }
+    },
+
 })
 
 
@@ -138,7 +139,7 @@ export const SinglePlanetPage = ({ match }) => {
                 </Typography>
                 <br />
                 <div className={classes.wrapper_bottomBlock}>
-                    <div className={classes.residents}>
+                    <div className={classes.list}>
                         <Typography variant="h6" gutterBottom>
                             Residents
                          </Typography>
@@ -149,7 +150,7 @@ export const SinglePlanetPage = ({ match }) => {
                                 resi.map(name => <Typography variant="subtitle1" key={name}>{name}</Typography>)
                         }
                     </div>
-                    <div className={classes.films}>
+                    <div className={classes.list}>
                         <Typography variant="h6" gutterBottom>
                             Films
                     </Typography>

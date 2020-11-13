@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
         margin: 'auto',
     },
     toolbar: {
-        height: 80
+        // height: 80
     },
     title: {
         marginRight: 10

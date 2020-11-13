@@ -52,12 +52,12 @@ export const AutoSearchPeople = () => {
         getOptionLabel: (option) => option,
     }
 
-    console.log(allPeople)
+    // console.log(allPeople)
     return (
         <form onSubmit={handleSubmit}>
             <Autocomplete
                 size="small"
-                style={{ width: 300, backgroundColor: 'white' }}
+                style={{ width: 250, backgroundColor: 'white' }}
                 {...defaultProps}
                 id="controlled-demo"
                 value={value}

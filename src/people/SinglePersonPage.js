@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { updateDataResults } from './filmsSlice'
+import { updateDataResults } from './peopleSlice'
 import { useHistory } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
@@ -11,7 +11,7 @@ import CardActions from '@material-ui/core/CardActions'
 import Button from '@material-ui/core/Button'
 
 import { LeftMenu } from '../app/LeftMenu'
-import { TopBarFilms } from './TopBarFilms'
+import { TopBarPeople } from './TopBarPeople'
 import { NotFound } from '../app/NotFound'
 
 const useStyles = makeStyles({
@@ -20,7 +20,7 @@ const useStyles = makeStyles({
         display: 'flex',
     },
     content: {
-        margin: ' 35px auto'
+        margin: '35px auto'
     },
     card: {
         width: 700,
@@ -53,96 +53,105 @@ const useStyles = makeStyles({
 })
 
 
-export const SingleFilmPage = ({ match }) => {
-    const { filmTitle } = match.params
+export const SinglePersonPage = ({ match }) => {
+    const { personName } = match.params
     const dispatch = useDispatch()
     const classes = useStyles()
     const history = useHistory()
-    const [filmCharacters, setFilmCharacter] = useState([])
-    const [filmPlanets, setFilmPlanets] = useState([])
-    const [filmStarships, setFilmStarships] = useState([])
-    const [filmVehicles, setFilmVehicles] = useState([])
-    const [filmSpecies, setFilmSpecies] = useState([])
+    const [personHomeWorld, setPersonHomeWorld] = useState('')
+    const [personFilms, setPersonFilms] = useState([])
+    const [personSpecies, setPersonSpecies] = useState('')
+    const [personVehicles, setPersonVehicles] = useState([])
+    const [personStarships, setPersonStarships] = useState([])
 
-    const film = useSelector(state => state.films.data.results.find(film => film.title === filmTitle))
-    // console.log(film)
+
+
+    const person = useSelector(state => state.people.data.results.find(person => person.name === personName))
+    // console.log(person)
 
     useEffect(() => {
-        if (film) {
-            const arrForCharacters = []
-            const { characters } = film
-            const requests = characters.map(character => fetch(character))
+        if (person) {
+            const { homeworld } = person
+            fetch(homeworld)
+                .then(response => response.json())
+                .then(result => setPersonHomeWorld(result.name))
+        } else {
+            const results = () => dispatch => {
+                fetch(`https://swapi.dev/api/people/?search=${personName}`)
+                    .then(response => response.json())
+                    .then(person => dispatch(updateDataResults(person.results)))
+            }
+            dispatch(results())
+        }
+    }, [dispatch, person, personName])
+
+    useEffect(() => {
+        if (person) {
+            const arrForMovies = []
+            const { films } = person
+            const requests = films.map(film => fetch(film))
             Promise.all(requests)
                 .then(response => Promise.all(response.map(element => element.json())))
-                .then(result => result.forEach(character => arrForCharacters.push(character.name)))
-                .then(() => setFilmCharacter(arrForCharacters))
+                .then(result => result.forEach(film => arrForMovies.push(film.title)))
+                .then(() => setPersonFilms(arrForMovies))
         }
         else {
             const results = () => dispatch => {
-                fetch(`https://swapi.dev/api/films/?search=${filmTitle}`)
+                fetch(`https://swapi.dev/api/people/?search=${personName}`)
                     .then(response => response.json())
                     .then(film => dispatch(updateDataResults(film.results)))
             }
             dispatch(results())
         }
-    }, [dispatch, film, filmTitle])
+    }, [])
 
     useEffect(() => {
-        if (film) {
-            const arrForPlanets = []
-            const { planets } = film
-            const requests = planets.map(planet => fetch(planet))
-            Promise.all(requests)
-                .then(response => Promise.all(response.map(element => element.json())))
-                .then(result => result.forEach(planet => arrForPlanets.push(planet.name)))
-                .then(() => setFilmPlanets(arrForPlanets))
+        if (person) {
+            const { species } = person
+            fetch(species)
+                .then(response => response.json())
+                .then(result => setPersonSpecies(result.name))
+        } else {
+            const results = () => dispatch => {
+                fetch(`https://swapi.dev/api/people/?search=${personName}`)
+                    .then(response => response.json())
+                    .then(person => dispatch(updateDataResults(person.results)))
+            }
+            dispatch(results())
         }
-    }, [film])
+    }, [])
 
     useEffect(() => {
-        if (film) {
-            const arrForStarships = []
-            const { starships } = film
-            const requests = starships.map(starship => fetch(starship))
-            Promise.all(requests)
-                .then(response => Promise.all(response.map(element => element.json())))
-                .then(result => result.forEach(starship => arrForStarships.push(starship.name)))
-                .then(() => setFilmStarships(arrForStarships))
-        }
-
-    }, [film])
-
-    useEffect(() => {
-        if (film) {
+        if (person) {
             const arrForVehicles = []
-            const { vehicles } = film
+            const { vehicles } = person
             const requests = vehicles.map(vehicle => fetch(vehicle))
             Promise.all(requests)
                 .then(response => Promise.all(response.map(element => element.json())))
                 .then(result => result.forEach(vehicle => arrForVehicles.push(vehicle.name)))
-                .then(() => setFilmVehicles(arrForVehicles))
+                .then(() => setPersonVehicles(arrForVehicles))
         }
-    }, [film])
+    }, [])
 
     useEffect(() => {
-        if (film) {
-            const arrForSpecies = []
-            const { species } = film
-            const requests = species.map(form => fetch(form))
+        if (person) {
+            const arrForStarships = []
+            const { starships } = person
+            const requests = starships.map(starship => fetch(starship))
             Promise.all(requests)
                 .then(response => Promise.all(response.map(element => element.json())))
-                .then(result => result.forEach(form => arrForSpecies.push(form.name)))
-                .then(() => setFilmSpecies(arrForSpecies))
+                .then(result => result.forEach(starship => arrForStarships.push(starship.name)))
+                .then(() => setPersonStarships(arrForStarships))
         }
-    }, [film])
 
+    }, [])
 
-    const onGoback = () => history.push('/films')
+    const onGoback = () => history.push('/people')
 
-    if (!film) {
+    if (!person) {
         return (
             <React.Fragment>
-                <TopBarFilms />
+                <TopBarPeople />
                 <NotFound />
             </React.Fragment>
         )
@@ -152,28 +161,40 @@ export const SingleFilmPage = ({ match }) => {
         <Card className={classes.card} variant="outlined">
             <CardContent>
                 <Typography variant="h3" gutterBottom>
-                    {film.title}
+                    {person.name}
                 </Typography>
                 <hr />
                 <br />
                 <Typography variant="h6" color="textSecondary" component="p">
-                    Episode: {film.episode_id}
-                </Typography>
-                <br />
-                <Typography variant="subtitle1" color="textSecondary" component="p">
-                    {film.opening_crawl}
+                    Height: {person.height}
                 </Typography>
                 <br />
                 <Typography variant="h6" color="textSecondary" component="p">
-                    Director: {film.director}
+                    Weight: {person.mass}
                 </Typography>
                 <br />
                 <Typography variant="h6" color="textSecondary" component="p">
-                    Producer: {film.producer}
+                    Hair color: {person.hair_color}
                 </Typography>
                 <br />
                 <Typography variant="h6" color="textSecondary" component="p">
-                    Date: {film.release_date}
+                    Сolor of the skin: {person.skin_color}
+                </Typography>
+                <br />
+                <Typography variant="h6" color="textSecondary" component="p">
+                    Eye color: {person.eye_color}
+                </Typography>
+                <br />
+                <Typography variant="h6" color="textSecondary" component="p">
+                    Year of birth: {person.birth_year}
+                </Typography>
+                <br />
+                <Typography variant="h6" color="textSecondary" component="p">
+                    Gender: {person.gender}
+                </Typography>
+                <br />
+                <Typography variant="h6" color="textSecondary" component="p">
+                    Homeworld: {personHomeWorld}
                 </Typography>
 
                 <br />
@@ -181,48 +202,13 @@ export const SingleFilmPage = ({ match }) => {
                     <div className={classes.topPart}>
                         <div className={classes.list}>
                             <Typography variant="h6" gutterBottom>
-                                Characters
+                                Movies
                             </Typography>
                             {
-                                film.characters.length === 0 ?
-                                    <Typography color="error" className={classes.no_values}>No characters</Typography>
+                                person.films.length === 0 ?
+                                    <Typography color="error" className={classes.no_values}>Information not found</Typography>
                                     :
-                                    filmCharacters.map(name => <Typography variant="subtitle1" key={name}>{name}</Typography>)
-                            }
-                        </div>
-                        <div className={classes.list}>
-                            <Typography variant="h6" gutterBottom>
-                                Planets
-                            </Typography>
-                            {
-                                film.planets.length === 0 ?
-                                    <Typography color="error" className={classes.no_values}>No films</Typography>
-                                    :
-                                    filmPlanets.map(name => <Typography variant="subtitle1" key={name}>{name}</Typography>)
-                            }
-                        </div>
-                        <div className={classes.list}>
-                            <Typography variant="h6" gutterBottom>
-                                Starships
-                            </Typography>
-                            {
-                                film.starships.length === 0 ?
-                                    <Typography color="error" className={classes.no_values}>No starships</Typography>
-                                    :
-                                    filmStarships.map(name => <Typography variant="subtitle1" key={name}>{name}</Typography>)
-                            }
-                        </div>
-                    </div>
-                    <div className={classes.bottomPart}>
-                        <div className={classes.list}>
-                            <Typography variant="h6" gutterBottom>
-                                Vehicles
-                            </Typography>
-                            {
-                                film.vehicles.length === 0 ?
-                                    <Typography color="error" className={classes.no_values}>No vehicles</Typography>
-                                    :
-                                    filmVehicles.map(name => <Typography variant="subtitle1" key={name}>{name}</Typography>)
+                                    personFilms.map(name => <Typography variant="subtitle1" key={name}>{name}</Typography>)
                             }
                         </div>
                         <div className={classes.list}>
@@ -230,10 +216,34 @@ export const SingleFilmPage = ({ match }) => {
                                 Species
                             </Typography>
                             {
-                                film.species.length === 0 ?
-                                    <Typography color="error" className={classes.no_values}>No species</Typography>
+                                person.species.length === 0 ?
+                                    <Typography color="error" className={classes.no_values}>Information not found</Typography>
                                     :
-                                    filmSpecies.map(name => <Typography variant="subtitle1" key={name}>{name}</Typography>)
+                                    <Typography variant="subtitle1">{personSpecies}</Typography>
+                            }
+                        </div>
+                        <div className={classes.list}>
+                            <Typography variant="h6" gutterBottom>
+                                Vehicles
+                            </Typography>
+                            {
+                                person.vehicles.length === 0 ?
+                                    <Typography color="error" className={classes.no_values}>Information not found</Typography>
+                                    :
+                                    personVehicles.map(name => <Typography variant="subtitle1" key={name}>{name}</Typography>)
+                            }
+                        </div>
+                    </div>
+                    <div className={classes.bottomPart}>
+                        <div className={classes.list}>
+                            <Typography variant="h6" gutterBottom>
+                                Starships
+                            </Typography>
+                            {
+                                person.starships.length === 0 ?
+                                    <Typography color="error" className={classes.no_values}>Information not found</Typography>
+                                    :
+                                    personStarships.map(name => <Typography variant="subtitle1" key={name}>{name}</Typography>)
                             }
                         </div>
                     </div>
@@ -249,7 +259,7 @@ export const SingleFilmPage = ({ match }) => {
 
     return (
         <section>
-            <TopBarFilms />
+            <TopBarPeople />
             <div className={classes.wrapper}>
                 <div className={classes.LeftMenu}>
                     <LeftMenu />

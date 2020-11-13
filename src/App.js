@@ -9,6 +9,7 @@ import {
 
 import { HomePage } from './app/homepage/HomePage'
 import { PeoplePage } from './people/PeoplePage'
+import { SinglePersonPage } from './people/SinglePersonPage'
 import { FilmsPage } from './films/FilmsPage'
 import { SingleFilmPage } from './films/SingleFilmPage'
 import { PlanetsPage } from './planets/PlanetsPage'
@@ -30,6 +31,7 @@ function App() {
             )}
           />
           <Route exact path="/people/" component={PeoplePage} />
+          <Route exact path="/people/:personName" component={SinglePersonPage} />
           <Route exact path="/films/" component={FilmsPage} />
           <Route exact path="/films/:filmTitle" component={SingleFilmPage} />
           <Route exact path="/planets/" component={PlanetsPage} />

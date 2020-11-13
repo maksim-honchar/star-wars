@@ -71,7 +71,7 @@ export const PeoplePage = () => {
 
     if (people) {
         listsPeople = people.map(person => (
-            <Link to={`/people/${people.name}`} className={classes.link} key={person.name}>
+            <Link to={`/people/${person.name}`} className={classes.link} key={person.name}>
                 <Card className={classes.card} variant="outlined" >
                     <CardContent>
                         <Typography variant="h4" gutterBottom>
