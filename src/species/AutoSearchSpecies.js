@@ -62,7 +62,7 @@ export const AutoSearchSpecies = () => {
                 id="controlled-demo"
                 value={value}
                 onChange={handleChange}
-                renderInput={(params) => <TextField {...params} label="choose a person" margin="none" />}
+                renderInput={(params) => <TextField {...params} label="choose a kind" margin="none" />}
             />
         </form >
     )

@@ -80,11 +80,11 @@ export const SpeciesPage = () => {
                         <hr />
                         <br />
                         <Typography component="p" >
-                            Year of birth: <span className={classes.headlines}>{kind.birth_year}</span>
+                            Average lifespan: <span className={classes.headlines}>{kind.average_lifespan}</span>
                         </Typography>
                         <br />
                         <Typography component="p" >
-                            Gender:  <span className={classes.headlines}>{kind.gender}</span>
+                            Language:  <span className={classes.headlines}>{kind.language}</span>
                         </Typography>
                     </CardContent>
                     <CardActions>
