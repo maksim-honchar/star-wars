@@ -30,7 +30,7 @@ export const SpeciesCard = () => {
     const classes = useStyles()
 
     return (
-        <Link to="planets" className={classes.link}>
+        <Link to="species" className={classes.link}>
             <Card className={classes.card}>
                 <CardActionArea>
                     <CardMedia
@@ -42,7 +42,7 @@ export const SpeciesCard = () => {
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
-                            SPICIES
+                            SPECIES
                         </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
                             Species in the Star Wars universe

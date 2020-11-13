@@ -14,6 +14,7 @@ import { FilmsPage } from './films/FilmsPage'
 import { SingleFilmPage } from './films/SingleFilmPage'
 import { PlanetsPage } from './planets/PlanetsPage'
 import { SinglePlanetPage } from './planets/SinglePlanetPage'
+import { SpeciesPage } from './species/SpeciesPage'
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
           <Route exact path="/films/:filmTitle" component={SingleFilmPage} />
           <Route exact path="/planets/" component={PlanetsPage} />
           <Route exact path="/planets/:planetName" component={SinglePlanetPage} />
+          <Route exact path="/species/" component={SpeciesPage} />
           <Redirect to="/" />
         </Switch>
       </Router>
