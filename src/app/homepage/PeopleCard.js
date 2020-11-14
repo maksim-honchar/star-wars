@@ -51,7 +51,7 @@ export const PeopleCard = () => {
                 </CardActionArea>
                 <CardActions>
                     <Button className={classes.learnMore} size="small" color="primary">
-                        Learn More
+                        Go to section
                     </Button>
                 </CardActions>
             </Card>

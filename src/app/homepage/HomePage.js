@@ -9,6 +9,7 @@ import { PeopleCard } from './PeopleCard'
 import { PlanetsCard } from './PlanetsCard'
 import { MoviesCard } from './MoviesCard'
 import { SpeciesCard } from './SpeciesCard'
+import { VehicleCard } from './VehicleCard'
 
 const useStyles = makeStyles({
     wraper4cards: {
@@ -38,6 +39,7 @@ export const HomePage = () => {
                 <PlanetsCard />
                 <MoviesCard />
                 <SpeciesCard />
+                <VehicleCard />
             </div>
         </section>
     )

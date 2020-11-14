@@ -16,6 +16,8 @@ import { PlanetsPage } from './planets/PlanetsPage'
 import { SinglePlanetPage } from './planets/SinglePlanetPage'
 import { SpeciesPage } from './species/SpeciesPage'
 import { SingleSpeciesPage } from './species/SingleSpeciesPage'
+import { VehiclePage } from './vehicle/VehiclePage'
+import { SingleVehiclePage } from './vehicle/SingleVehiclePage'
 
 
 function App() {
@@ -40,6 +42,8 @@ function App() {
           <Route exact path="/planets/:planetName" component={SinglePlanetPage} />
           <Route exact path="/species/" component={SpeciesPage} />
           <Route exact path="/species/:kindName" component={SingleSpeciesPage} />
+          <Route exact path="/vehicles/" component={VehiclePage} />
+          <Route exact path="/vehicles/:transportName" component={SingleVehiclePage} />
           <Redirect to="/" />
         </Switch>
       </Router>

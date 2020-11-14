@@ -106,47 +106,6 @@ export const SingleSpeciesPage = ({ match }) => {
         }
     }, [kind])
 
-    /* useEffect(() => {
-         if (person) {
-             const { species } = person
-             fetch(species)
-                 .then(response => response.json())
-                 .then(result => setPersonSpecies(result.name))
-         } else {
-             const results = () => dispatch => {
-                 fetch(`https://swapi.dev/api/people/?search=${personName}`)
-                     .then(response => response.json())
-                     .then(person => dispatch(updateDataResults(person.results)))
-             }
-             dispatch(results())
-         }
-     }, [])
- 
-     useEffect(() => {
-         if (person) {
-             const arrForVehicles = []
-             const { vehicles } = person
-             const requests = vehicles.map(vehicle => fetch(vehicle))
-             Promise.all(requests)
-                 .then(response => Promise.all(response.map(element => element.json())))
-                 .then(result => result.forEach(vehicle => arrForVehicles.push(vehicle.name)))
-                 .then(() => setPersonVehicles(arrForVehicles))
-         }
-     }, [])
- 
-     useEffect(() => {
-         if (person) {
-             const arrForStarships = []
-             const { starships } = person
-             const requests = starships.map(starship => fetch(starship))
-             Promise.all(requests)
-                 .then(response => Promise.all(response.map(element => element.json())))
-                 .then(result => result.forEach(starship => arrForStarships.push(starship.name)))
-                 .then(() => setPersonStarships(arrForStarships))
-         }
- 
-     }, [])
-    */
     const onGoback = () => history.push('/species')
 
     if (!kind) {
@@ -228,30 +187,6 @@ export const SingleSpeciesPage = ({ match }) => {
                                     speciesPeople.map(name => <Typography variant="subtitle1" key={name}>{name}</Typography>)
                             }
                         </div>
-                        {/* <div className={classes.list}>
-                            <Typography variant="h6" gutterBottom>
-                                Vehicles
-                            </Typography>
-                            {
-                                person.vehicles.length === 0 ?
-                                    <Typography color="error" className={classes.no_values}>Information not found</Typography>
-                                    :
-                                    personVehicles.map(name => <Typography variant="subtitle1" key={name}>{name}</Typography>)
-                            }
-                        </div>
-                    </div>
-                    <div className={classes.bottomPart}>
-                        <div className={classes.list}>
-                            <Typography variant="h6" gutterBottom>
-                                Starships
-                            </Typography>
-                            {
-                                person.starships.length === 0 ?
-                                    <Typography color="error" className={classes.no_values}>Information not found</Typography>
-                                    :
-                                    personStarships.map(name => <Typography variant="subtitle1" key={name}>{name}</Typography>)
-                            }
-                        </div> */}
                     </div>
                 </div>
             </CardContent>
