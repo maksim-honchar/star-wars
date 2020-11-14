@@ -1,14 +1,14 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { updateData, updateCurrentPage } from './vehicleSlice'
+import { updateData, updateCurrentPage } from './starshipsSlice'
 
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 
-import { HandleSearchVehicle } from './HandleSearchVehicle'
+import { HandleSearchStarship } from './HandleSearchStarship'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -34,14 +34,14 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-export const TopBarVehicle = () => {
+export const TopBarStarships = () => {
     const classes = useStyles()
     const dispatch = useDispatch()
     const history = useHistory()
 
     const toStartPage = () => {
         const asyncRequestData = () => async (dispatch) => {
-            const response = await fetch('https://swapi.dev/api/vehicles')
+            const response = await fetch('https://swapi.dev/api/starships')
             if (response.ok) {
                 const result = await response.json()
                 dispatch(updateData(result))
@@ -51,7 +51,7 @@ export const TopBarVehicle = () => {
         }
         dispatch(asyncRequestData())
         dispatch(updateCurrentPage(0))
-        history.push('/vehicles')
+        history.push('/starships')
     }
 
     return (
@@ -61,11 +61,11 @@ export const TopBarVehicle = () => {
                     <div className={classes.wrapper4_title_search}>
                         <div className={classes.title}>
                             <Typography className={classes.title} variant="h6" noWrap>
-                                <span className={classes.link} onClick={toStartPage}>Star Wars - vehicle</span>
+                                <span className={classes.link} onClick={toStartPage}>Star Wars - starships</span>
                             </Typography>
                         </div>
                         <div className={classes.search_field}>
-                            <HandleSearchVehicle />
+                            <HandleSearchStarship />
                         </div>
                     </div>
                 </Toolbar>

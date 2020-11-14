@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-export const AutoSearchVehicle = () => {
+export const HandleSearchVehicle = () => {
     const classes = useStyles()
     const history = useHistory()
 

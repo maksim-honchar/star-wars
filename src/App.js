@@ -18,6 +18,8 @@ import { SpeciesPage } from './species/SpeciesPage'
 import { SingleSpeciesPage } from './species/SingleSpeciesPage'
 import { VehiclePage } from './vehicle/VehiclePage'
 import { SingleVehiclePage } from './vehicle/SingleVehiclePage'
+import { StarshipsPage } from './starships/StarshipsPage'
+import { SingleStarshipPage } from './starships/SingleStarshipPage'
 
 
 function App() {
@@ -44,6 +46,8 @@ function App() {
           <Route exact path="/species/:kindName" component={SingleSpeciesPage} />
           <Route exact path="/vehicles/" component={VehiclePage} />
           <Route exact path="/vehicles/:transportName" component={SingleVehiclePage} />
+          <Route exact path="/starships/" component={StarshipsPage} />
+          <Route exact path="/starships/:starshipName" component={SingleStarshipPage} />
           <Redirect to="/" />
         </Switch>
       </Router>

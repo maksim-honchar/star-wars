@@ -4,6 +4,7 @@ import planetsReducer from '../planets/planetsSlice'
 import filmsReducer from '../films/filmsSlice'
 import speciesReducer from '../species/speciesSlice'
 import vehicleReducer from '../vehicle/vehicleSlice'
+import starshipsReducer from '../starships/starshipsSlice'
 
 export default configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export default configureStore({
     planets: planetsReducer,
     films: filmsReducer,
     species: speciesReducer,
-    vehicle: vehicleReducer
+    vehicle: vehicleReducer,
+    starships: starshipsReducer
   }
 })
