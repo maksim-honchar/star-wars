@@ -15,15 +15,13 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
     },
     link: {
-        cursor: 'pointer'
+        cursor: 'pointer',
+        color: '#ffc107'
     },
     wrapper4_title_search: {
         display: 'flex',
         alignItems: 'center',
         margin: 'auto',
-    },
-    toolbar: {
-        height: 80
     },
     title: {
         marginRight: 10

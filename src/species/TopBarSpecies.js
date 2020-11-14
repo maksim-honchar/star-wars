@@ -15,7 +15,8 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
     },
     link: {
-        cursor: 'pointer'
+        cursor: 'pointer',
+        color: '#ffc107'
     },
     wrapper4_title_search: {
         display: 'flex',
