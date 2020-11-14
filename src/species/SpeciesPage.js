@@ -74,7 +74,7 @@ export const SpeciesPage = () => {
             <Link to={`/species/${kind.name}`} className={classes.link} key={kind.name}>
                 <Card className={classes.card} variant="outlined" >
                     <CardContent>
-                        <Typography variant="h4" gutterBottom>
+                        <Typography variant="h5" gutterBottom>
                             {kind.name}
                         </Typography>
                         <hr />

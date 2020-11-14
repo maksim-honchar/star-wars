@@ -74,7 +74,7 @@ export const PlanetsPage = () => {
             <Link to={`/planets/${planet.name}`} className={classes.link} key={planet.name}>
                 <Card className={classes.card} variant="outlined" >
                     <CardContent>
-                        <Typography variant="h4" gutterBottom>
+                        <Typography variant="h5" gutterBottom>
                             {planet.name}
                         </Typography>
                         <hr />

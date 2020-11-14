@@ -30,7 +30,7 @@ export const VehicleCard = () => {
     const classes = useStyles()
 
     return (
-        <Link to="vehicle" className={classes.link}>
+        <Link to="vehicles" className={classes.link}>
             <Card className={classes.card}>
                 <CardActionArea>
                     <CardMedia

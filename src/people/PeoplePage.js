@@ -74,7 +74,7 @@ export const PeoplePage = () => {
             <Link to={`/people/${person.name}`} className={classes.link} key={person.name}>
                 <Card className={classes.card} variant="outlined" >
                     <CardContent>
-                        <Typography variant="h4" gutterBottom>
+                        <Typography variant="h5" gutterBottom>
                             {person.name}
                         </Typography>
                         <hr />

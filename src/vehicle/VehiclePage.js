@@ -74,7 +74,7 @@ export const VehiclePage = () => {
             <Link to={`/vehicles/${transport.name}`} className={classes.link} key={transport.name}>
                 <Card className={classes.card} variant="outlined" >
                     <CardContent>
-                        <Typography variant="h4" gutterBottom>
+                        <Typography variant="h5" gutterBottom>
                             {transport.name}
                         </Typography>
                         <hr />
