@@ -189,10 +189,11 @@ export const SingleVehiclePage = ({ match }) => {
                 </div>
                 <div className={classes.content}>
                     {
-                        (vehicle.pilots.length !== 0 && vehicle.pilots.length !== pilots.length) ||
-                            (vehicle.films.length !== 0 && vehicle.films.length !== films.length)
-                            ? <CircularProgress />
-                            : showPage
+                        // (vehicle.pilots.length !== 0 && vehicle.pilots.length !== pilots.length) ||
+                        //     (vehicle.films.length !== 0 && vehicle.films.length !== films.length)
+                        //     ? <CircularProgress />
+                        //     : 
+                        showPage
                     }
                 </div>
             </div>

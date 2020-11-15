@@ -204,10 +204,11 @@ export const SingleStarshipPage = ({ match }) => {
                 </div>
                 <div className={classes.content}>
                     {
-                        (starship.pilots.length !== 0 && starship.pilots.length !== pilots.length) ||
-                            (starship.films.length !== 0 && starship.films.length !== films.length)
-                            ? <CircularProgress />
-                            : showPage
+                        // (starship.pilots.length !== 0 && starship.pilots.length !== pilots.length) ||
+                        //     (starship.films.length !== 0 && starship.films.length !== films.length)
+                        //     ? <CircularProgress />
+                        //     : 
+                        showPage
                     }
                 </div>
             </div>

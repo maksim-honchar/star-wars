@@ -258,13 +258,14 @@ export const SingleFilmPage = ({ match }) => {
                 </div>
                 <div className={classes.content}>
                     {
-                        (film.characters.length !== 0 && film.characters.length !== filmCharacters.length) ||
-                            (film.planets.length !== 0 && film.planets.length !== filmPlanets.length) ||
-                            (film.starships.length !== 0 && film.starships.length !== filmStarships.length) ||
-                            (film.vehicles.length !== 0 && film.vehicles.length !== filmVehicles.length) ||
-                            (film.species.length !== 0 && film.species.length !== filmSpecies.length)
-                            ? <CircularProgress />
-                            : showPage
+                        // (film.characters.length !== 0 && film.characters.length !== filmCharacters.length) ||
+                        //     (film.planets.length !== 0 && film.planets.length !== filmPlanets.length) ||
+                        //     (film.starships.length !== 0 && film.starships.length !== filmStarships.length) ||
+                        //     (film.vehicles.length !== 0 && film.vehicles.length !== filmVehicles.length) ||
+                        //     (film.species.length !== 0 && film.species.length !== filmSpecies.length)
+                        //     ? <CircularProgress />
+                        //     : 
+                        showPage
                     }
                 </div>
             </div>

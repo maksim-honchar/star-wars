@@ -207,10 +207,11 @@ export const SingleSpeciesPage = ({ match }) => {
                 </div>
                 <div className={classes.content}>
                     {
-                        (kind.films.length !== 0 && kind.films.length !== speciesFilms.length) ||
-                            (kind.people.length !== 0 && kind.people.length !== speciesPeople.length)
-                            ? <CircularProgress />
-                            : showPage
+                        // (kind.films.length !== 0 && kind.films.length !== speciesFilms.length) ||
+                        //     (kind.people.length !== 0 && kind.people.length !== speciesPeople.length)
+                        //     ? <CircularProgress />
+                        //     : 
+                        showPage
                     }
                 </div>
             </div>
