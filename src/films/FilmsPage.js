@@ -123,7 +123,6 @@ export const FilmsPage = () => {
         dispatch(asyncRequestData())
     }, [dispatch, url])
 
-    console.log('dd')
     return (
         <section>
             <TopBarFilms />
