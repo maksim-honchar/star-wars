@@ -60,6 +60,18 @@ export const SingleStarshipPage = ({ match }) => {
 
     useEffect(() => {
         if (starship) {
+            const arrForFilms = []
+            const { films } = starship
+            const requests = films.map(film => fetch(film))
+            Promise.all(requests)
+                .then(response => Promise.all(response.map(element => element.json())))
+                .then(result => result.forEach(film => arrForFilms.push(film.title)))
+                .then(() => setFilms(arrForFilms))
+        }
+    }, [])
+
+    useEffect(() => {
+        if (starship) {
             const arrForPilots = []
             const { pilots } = starship
             const requests = pilots.map(pilot => fetch(pilot))
@@ -76,19 +88,6 @@ export const SingleStarshipPage = ({ match }) => {
             dispatch(results())
         }
     }, [dispatch, starship, starshipName])
-
-    useEffect(() => {
-        if (starship) {
-            const arrForFilms = []
-            const { films } = starship
-            const requests = films.map(film => fetch(film))
-            Promise.all(requests)
-                .then(response => Promise.all(response.map(element => element.json())))
-                .then(result => result.forEach(film => arrForFilms.push(film.title)))
-                .then(() => setFilms(arrForFilms))
-        }
-
-    }, [])
 
     const onGoback = () => history.push('/starships')
 
