@@ -81,7 +81,7 @@ export const SingleStarshipPage = ({ match }) => {
                 .then(() => setPilots(arrForPilots))
         } else {
             const results = () => dispatch => {
-                fetch(`https://swapi.dev/api/planets/?search=${starshipName}`)
+                fetch(`https://swapi.dev/api/starships/?search=${starshipName}`)
                     .then(response => response.json())
                     .then(starship => dispatch(updateDataResults(starship.results)))
             }
