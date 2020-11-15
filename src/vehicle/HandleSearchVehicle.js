@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import { mainUrl } from '../app/helper'
 
 import { makeStyles } from '@material-ui/core/styles'
 import InputBase from '@material-ui/core/InputBase'
@@ -60,7 +61,7 @@ export const HandleSearchVehicle = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        fetch(`https://swapi.dev/api/vehicles/?search=${searchQuery}`)
+        fetch(`${mainUrl}/vehicles/?search=${searchQuery}`)
             .then(response => response.json())
             .then(answer => history.push(`/vehicles/${answer.results[0].name}`))
         setSearchQuery('')

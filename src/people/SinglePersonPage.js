@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import CardActions from '@material-ui/core/CardActions'
 import Button from '@material-ui/core/Button'
+import { mainUrl } from '../app/helper'
 
 import { LeftMenu } from '../app/LeftMenu'
 import { TopBarPeople } from './TopBarPeople'
@@ -89,7 +90,7 @@ export const SinglePersonPage = ({ match }) => {
                 .then(() => setPersonFilms(arrForMovies))
         } else {
             const results = () => dispatch => {
-                fetch(`https://swapi.dev/api/people/?search=${personName}`)
+                fetch(`${mainUrl}/people/?search=${personName}`)
                     .then(response => response.json())
                     .then(person => dispatch(updateDataResults(person.results)))
             }

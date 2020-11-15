@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { mainUrl } from './helper'
+
 import { makeStyles } from '@material-ui/core/styles'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
@@ -36,7 +38,7 @@ export const LeftMenu = () => {
     ))
 
     useEffect(() => {
-        fetch('https://swapi.dev/api/')
+        fetch(`${mainUrl}/`)
             .then(response => response.json())
             .then(result => setSections(Object.keys(result)))
     }, [])

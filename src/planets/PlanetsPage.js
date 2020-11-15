@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { updateData, updateCurrentPage, selectCount, selectPlanets, selectNext, selectPrevious, selectCurrentPage } from './planetsSlice'
 import { useDispatch, useSelector } from 'react-redux'
+import { mainUrl } from '../app/helper'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
@@ -55,7 +56,7 @@ export const PlanetsPage = () => {
     const prevUrlPage = useSelector(selectPrevious)
     const currentPage = useSelector(selectCurrentPage)
 
-    const [url, setUrl] = useState(`https://swapi.dev/api/planets/?page=${currentPage + 1}`)
+    const [url, setUrl] = useState(`${mainUrl}/planets/?page=${currentPage + 1}`)
 
     const handleChangePage = (event, newPage) => {
         if (currentPage < newPage) {

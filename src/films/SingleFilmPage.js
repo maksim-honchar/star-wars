@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import CardActions from '@material-ui/core/CardActions'
 import Button from '@material-ui/core/Button'
+import { mainUrl } from '../app/helper'
 
 import { LeftMenu } from '../app/LeftMenu'
 import { TopBarFilms } from './TopBarFilms'
@@ -79,7 +80,7 @@ export const SingleFilmPage = ({ match }) => {
         }
         else {
             const results = () => dispatch => {
-                fetch(`https://swapi.dev/api/films/?search=${filmTitle}`)
+                fetch(`${mainUrl}/films/?search=${filmTitle}`)
                     .then(response => response.json())
                     .then(film => dispatch(updateDataResults(film.results)))
             }

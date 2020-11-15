@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { updateDataResults } from './starshipsSlice'
 import { useHistory } from 'react-router-dom'
+import { mainUrl } from '../app/helper'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
@@ -70,7 +71,7 @@ export const SingleStarshipPage = ({ match }) => {
                 .then(() => setPilots(arrForPilots))
         } else {
             const results = () => dispatch => {
-                fetch(`https://swapi.dev/api/starships/?search=${starshipName}`)
+                fetch(`${mainUrl}/starships/?search=${starshipName}`)
                     .then(response => response.json())
                     .then(starship => dispatch(updateDataResults(starship.results)))
             }

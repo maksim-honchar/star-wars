@@ -9,6 +9,7 @@ import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 import CardActions from '@material-ui/core/CardActions'
 import Button from '@material-ui/core/Button'
+import { mainUrl } from '../app/helper'
 
 import { TopBarPlanets } from './TopBarPlanets'
 import { LeftMenu } from '../app/LeftMenu'
@@ -71,7 +72,7 @@ export const SinglePlanetPage = ({ match }) => {
         }
         else {
             const results = () => dispatch => {
-                fetch(`https://swapi.dev/api/planets/?search=${planetName}`)
+                fetch(`${mainUrl}/planets/?search=${planetName}`)
                     .then(response => response.json())
                     .then(planet => dispatch(updateDataResults(planet.results)))
             }
@@ -91,7 +92,7 @@ export const SinglePlanetPage = ({ match }) => {
         }
         else {
             const results = () => dispatch => {
-                fetch(`https://swapi.dev/api/planets/?search=${planetName}`)
+                fetch(`${mainUrl}/planets/?search=${planetName}`)
                     .then(response => response.json())
                     .then(planet => dispatch(updateDataResults(planet.results)))
             }

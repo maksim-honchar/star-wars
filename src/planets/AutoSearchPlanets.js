@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { selectCount, updateDataCount } from './planetsSlice'
 import { useHistory } from 'react-router-dom'
+import { mainUrl } from '../app/helper'
 
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
@@ -74,14 +75,14 @@ export const AutoSearchPlanets = () => {
         let addPlanets = []
         if (amountPlanets) {
             for (let i = 1; i <= amountPlanets; i++) {
-                fetch(`http://swapi.dev/api/planets/${i}`)
+                fetch(`${mainUrl}/planets/${i}`)
                     .then(response => response.json())
                     .then(planet => addPlanets.push(planet.name))
             }
             setAllPlanets(addPlanets)
         } else {
             const fetchCount = () => dispatch => {
-                fetch('http://swapi.dev/api/planets/')
+                fetch(`${mainUrl}/planets/`)
                     .then(response => response.json())
                     .then(result => dispatch(updateDataCount(result.count)))
             }

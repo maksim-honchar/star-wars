@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import CardActions from '@material-ui/core/CardActions'
 import Button from '@material-ui/core/Button'
+import { mainUrl } from '../app/helper'
 
 import { LeftMenu } from '../app/LeftMenu'
 import { TopBarSpecies } from './TopBarSpecies'
@@ -74,7 +75,7 @@ export const SingleSpeciesPage = ({ match }) => {
                 .then(result => setSpeciesHomeworld(result.name))
         } else {
             const results = () => dispatch => {
-                fetch(`https://swapi.dev/api/species/?search=${kindName}`)
+                fetch(`${mainUrl}/species/?search=${kindName}`)
                     .then(response => response.json())
                     .then(person => dispatch(updateDataResults(person.results)))
             }

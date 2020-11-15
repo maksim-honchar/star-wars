@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { selectCount, updateDataCount } from './filmsSlice'
 import { useHistory } from 'react-router-dom'
+import { mainUrl } from '../app/helper'
 
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
@@ -74,14 +75,14 @@ export const AutoSearchFilms = () => {
         let addFilms = []
         if (amountPlanets) {
             for (let i = 1; i <= amountPlanets; i++) {
-                fetch(`http://swapi.dev/api/films/${i}`)
+                fetch(`${mainUrl}/films/${i}`)
                     .then(response => response.json())
                     .then(film => addFilms.push(film.title))
             }
             setAllFilms(addFilms)
         } else {
             const fetchCount = () => dispatch => {
-                fetch('http://swapi.dev/api/films/')
+                fetch(`${mainUrl}/films/`)
                     .then(response => response.json())
                     .then(result => dispatch(updateDataCount(result.count)))
             }

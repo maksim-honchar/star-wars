@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { selectCount, selectFilms, selectNext, selectPrevious, selectCurrentPage, updateData, updateCurrentPage } from './filmsSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { TopBarFilms } from './TopBarFilms'
+import { mainUrl } from '../app/helper'
 
 import { LeftMenu } from '../app/LeftMenu'
 
@@ -61,7 +62,7 @@ export const FilmsPage = () => {
     const prevUrlPage = useSelector(selectPrevious)
     const currentPage = useSelector(selectCurrentPage)
 
-    const [url, setUrl] = useState(`https://swapi.dev/api/films/?page=${currentPage + 1}`)
+    const [url, setUrl] = useState(`${mainUrl}/films/?page=${currentPage + 1}`)
     console.log(url)
 
     const handleChangePage = (event, newPage) => {

@@ -2,6 +2,7 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { updateData, updateCurrentPage } from './starshipsSlice'
+import { mainUrl } from '../app/helper'
 
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -43,7 +44,7 @@ export const TopBarStarships = () => {
 
     const toStartPage = () => {
         const asyncRequestData = () => async (dispatch) => {
-            const response = await fetch('https://swapi.dev/api/starships')
+            const response = await fetch(`${mainUrl}/starships`)
             if (response.ok) {
                 const result = await response.json()
                 dispatch(updateData(result))

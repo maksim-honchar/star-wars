@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { selectCount, updateDataCount } from './speciesSlice'
 import { useHistory } from 'react-router-dom'
+import { mainUrl } from '../app/helper'
 
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
@@ -74,14 +75,14 @@ export const AutoSearchSpecies = () => {
         let addSpecies = []
         if (amountSpecies) {
             for (let i = 1; i <= amountSpecies; i++) {
-                fetch(`http://swapi.dev/api/species/${i}`)
+                fetch(`${mainUrl}/species/${i}`)
                     .then(response => response.json())
                     .then(kind => addSpecies.push(kind.name))
             }
             setAllSpecies(addSpecies)
         } else {
             const fetchCount = () => dispatch => {
-                fetch('http://swapi.dev/api/species/')
+                fetch(`${mainUrl}/species/`)
                     .then(response => response.json())
                     .then(result => dispatch(updateDataCount(result.count)))
             }

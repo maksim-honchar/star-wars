@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { selectCount, updateDataCount } from './peopleSlice'
 import { useHistory } from 'react-router-dom'
+import { mainUrl } from '../app/helper'
 
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
@@ -75,14 +76,14 @@ export const AutoSearchPeople = () => {
         let addPeople = []
         if (amountPeople) {
             for (let i = 1; i <= amountPeople; i++) {
-                fetch(`http://swapi.dev/api/people/${i === 17 ? i + 1 : i}`)
+                fetch(`${mainUrl}/people/${i === 17 ? i + 1 : i}`)
                     .then(response => response.json())
                     .then(person => addPeople.push(person.name))
             }
             setAllPeople(addPeople)
         } else {
             const fetchCount = () => dispatch => {
-                fetch('http://swapi.dev/api/people/')
+                fetch(`${mainUrl}/people/`)
                     .then(response => response.json())
                     .then(result => dispatch(updateDataCount(result.count)))
             }
