@@ -16,21 +16,22 @@ const useStyles = makeStyles((theme) => ({
     },
     link: {
         cursor: 'pointer',
-        color: '#ffc107'
+        color: '#ffc107',
+        fontWeight: 'bold'
     },
     wrapper4_title_search: {
         display: 'flex',
         alignItems: 'center',
         margin: 'auto',
     },
-    toolbar: {
-        // height: 80
-    },
     title: {
         marginRight: 10
     },
     search_field: {
         margin: 10
+    },
+    toolbar: {
+        height: 75
     }
 }))
 
@@ -61,8 +62,8 @@ export const TopBarSpecies = () => {
                 <Toolbar className={classes.toolbar}>
                     <div className={classes.wrapper4_title_search}>
                         <div className={classes.title}>
-                            <Typography className={classes.title} variant="h6" noWrap>
-                                <span className={classes.link} onClick={toStartPage}>Star Wars - species</span>
+                            <Typography className={classes.title} variant="h5" noWrap>
+                                <span className={classes.link} onClick={toStartPage}>Star Wars [ species ]</span>
                             </Typography>
                         </div>
                         <div className={classes.search_field}>

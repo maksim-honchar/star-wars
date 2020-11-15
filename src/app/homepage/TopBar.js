@@ -11,6 +11,10 @@ const useStyles = makeStyles((theme) => ({
     },
     link: {
         color: '#ffc107',
+        fontWeight: 'bold'
+    },
+    toolbar: {
+        height: 75
     }
 }))
 
@@ -20,9 +24,9 @@ export const TopBar = () => {
     return (
         <section>
             <AppBar position="static">
-                <Toolbar>
+                <Toolbar className={classes.toolbar}>
                     <div className={classes.title}>
-                        <Typography variant="h6" noWrap>
+                        <Typography variant="h4" noWrap>
                             <span className={classes.link}>Star Wars</span>
                         </Typography>
                     </div>
