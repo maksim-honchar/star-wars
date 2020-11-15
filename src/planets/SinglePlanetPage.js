@@ -13,6 +13,7 @@ import Button from '@material-ui/core/Button'
 import { TopBarPlanets } from './TopBarPlanets'
 import { LeftMenu } from '../app/LeftMenu'
 import { NotFound } from '../app/NotFound'
+import { CircularProgress } from '@material-ui/core'
 
 const useStyles = makeStyles({
     wrapper: {
@@ -180,7 +181,10 @@ export const SinglePlanetPage = ({ match }) => {
                 </div>
                 <div className={classes.content}>
                     {
-                        showPage
+                        (planet.residents.length !== 0 && planet.residents.length !== resi.length) ||
+                            (planet.films.length !== 0 && planet.films.length !== films.length)
+                            ? <CircularProgress />
+                            : showPage
                     }
                 </div>
             </div>

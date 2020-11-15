@@ -36,8 +36,8 @@ const useStyles = makeStyles({
         color: '#757575',
         fontWeight: 'bold'
     },
-    spinner: {
-        margin: '300px 650px'
+    content: {
+        margin: 'auto'
     },
     table_pagination: {
         marginTop: 30

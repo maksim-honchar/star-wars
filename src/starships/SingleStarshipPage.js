@@ -9,6 +9,7 @@ import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 import CardActions from '@material-ui/core/CardActions'
 import Button from '@material-ui/core/Button'
+import { CircularProgress } from '@material-ui/core'
 
 import { TopBarStarships } from './TopBarStarships'
 import { LeftMenu } from '../app/LeftMenu'
@@ -60,18 +61,6 @@ export const SingleStarshipPage = ({ match }) => {
 
     useEffect(() => {
         if (starship) {
-            const arrForFilms = []
-            const { films } = starship
-            const requests = films.map(film => fetch(film))
-            Promise.all(requests)
-                .then(response => Promise.all(response.map(element => element.json())))
-                .then(result => result.forEach(film => arrForFilms.push(film.title)))
-                .then(() => setFilms(arrForFilms))
-        }
-    }, [])
-
-    useEffect(() => {
-        if (starship) {
             const arrForPilots = []
             const { pilots } = starship
             const requests = pilots.map(pilot => fetch(pilot))
@@ -86,6 +75,18 @@ export const SingleStarshipPage = ({ match }) => {
                     .then(starship => dispatch(updateDataResults(starship.results)))
             }
             dispatch(results())
+        }
+    }, [dispatch, starship, starshipName])
+
+    useEffect(() => {
+        if (starship) {
+            const arrForFilms = []
+            const { films } = starship
+            const requests = films.map(film => fetch(film))
+            Promise.all(requests)
+                .then(response => Promise.all(response.map(element => element.json())))
+                .then(result => result.forEach(film => arrForFilms.push(film.title)))
+                .then(() => setFilms(arrForFilms))
         }
     }, [dispatch, starship, starshipName])
 
@@ -203,7 +204,10 @@ export const SingleStarshipPage = ({ match }) => {
                 </div>
                 <div className={classes.content}>
                     {
-                        showPage
+                        (starship.pilots.length !== 0 && starship.pilots.length !== pilots.length) ||
+                            (starship.films.length !== 0 && starship.films.length !== films.length)
+                            ? <CircularProgress />
+                            : showPage
                     }
                 </div>
             </div>

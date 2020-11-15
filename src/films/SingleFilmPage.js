@@ -181,13 +181,13 @@ export const SingleFilmPage = ({ match }) => {
                     <div className={classes.topPart}>
                         <div className={classes.list}>
                             <Typography variant="h6" gutterBottom>
-                                Characters
+                                Vehicles
                             </Typography>
                             {
-                                film.characters.length === 0 ?
-                                    <Typography color="error" className={classes.no_values}>No characters</Typography>
+                                film.vehicles.length === 0 ?
+                                    <Typography color="error" className={classes.no_values}>No vehicles</Typography>
                                     :
-                                    filmCharacters.map(name => <Typography variant="subtitle1" key={name}>{name}</Typography>)
+                                    filmVehicles.map(name => <Typography variant="subtitle1" key={name}>{name}</Typography>)
                             }
                         </div>
                         <div className={classes.list}>
@@ -212,19 +212,10 @@ export const SingleFilmPage = ({ match }) => {
                                     filmStarships.map(name => <Typography variant="subtitle1" key={name}>{name}</Typography>)
                             }
                         </div>
+
                     </div>
                     <div className={classes.bottomPart}>
-                        <div className={classes.list}>
-                            <Typography variant="h6" gutterBottom>
-                                Vehicles
-                            </Typography>
-                            {
-                                film.vehicles.length === 0 ?
-                                    <Typography color="error" className={classes.no_values}>No vehicles</Typography>
-                                    :
-                                    filmVehicles.map(name => <Typography variant="subtitle1" key={name}>{name}</Typography>)
-                            }
-                        </div>
+
                         <div className={classes.list}>
                             <Typography variant="h6" gutterBottom>
                                 Species
@@ -234,6 +225,17 @@ export const SingleFilmPage = ({ match }) => {
                                     <Typography color="error" className={classes.no_values}>No species</Typography>
                                     :
                                     filmSpecies.map(name => <Typography variant="subtitle1" key={name}>{name}</Typography>)
+                            }
+                        </div>
+                        <div className={classes.list}>
+                            <Typography variant="h6" gutterBottom>
+                                Characters
+                            </Typography>
+                            {
+                                film.characters.length === 0 ?
+                                    <Typography color="error" className={classes.no_values}>No characters</Typography>
+                                    :
+                                    filmCharacters.map(name => <Typography variant="subtitle1" key={name}>{name}</Typography>)
                             }
                         </div>
                     </div>
@@ -255,7 +257,15 @@ export const SingleFilmPage = ({ match }) => {
                     <LeftMenu />
                 </div>
                 <div className={classes.content}>
-                    {showPage}
+                    {
+                        (film.characters.length !== 0 && film.characters.length !== filmCharacters.length) ||
+                            (film.planets.length !== 0 && film.planets.length !== filmPlanets.length) ||
+                            (film.starships.length !== 0 && film.starships.length !== filmStarships.length) ||
+                            (film.vehicles.length !== 0 && film.vehicles.length !== filmVehicles.length) ||
+                            (film.species.length !== 0 && film.species.length !== filmSpecies.length)
+                            ? <CircularProgress />
+                            : showPage
+                    }
                 </div>
             </div>
         </section >

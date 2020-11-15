@@ -206,7 +206,12 @@ export const SingleSpeciesPage = ({ match }) => {
                     <LeftMenu />
                 </div>
                 <div className={classes.content}>
-                    {showPage}
+                    {
+                        (kind.films.length !== 0 && kind.films.length !== speciesFilms.length) ||
+                            (kind.people.length !== 0 && kind.people.length !== speciesPeople.length)
+                            ? <CircularProgress />
+                            : showPage
+                    }
                 </div>
             </div>
         </section >

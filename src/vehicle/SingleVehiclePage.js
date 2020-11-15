@@ -13,6 +13,7 @@ import Button from '@material-ui/core/Button'
 import { TopBarVehicle } from './TopBarVehicle'
 import { LeftMenu } from '../app/LeftMenu'
 import { NotFound } from '../app/NotFound'
+import { CircularProgress } from '@material-ui/core'
 
 const useStyles = makeStyles({
     wrapper: {
@@ -188,7 +189,10 @@ export const SingleVehiclePage = ({ match }) => {
                 </div>
                 <div className={classes.content}>
                     {
-                        showPage
+                        (vehicle.pilots.length !== 0 && vehicle.pilots.length !== pilots.length) ||
+                            (vehicle.films.length !== 0 && vehicle.films.length !== films.length)
+                            ? <CircularProgress />
+                            : showPage
                     }
                 </div>
             </div>

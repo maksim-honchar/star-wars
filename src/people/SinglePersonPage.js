@@ -75,13 +75,6 @@ export const SinglePersonPage = ({ match }) => {
             fetch(homeworld)
                 .then(response => response.json())
                 .then(result => setPersonHomeWorld(result.name))
-        } else {
-            const results = () => dispatch => {
-                fetch(`https://swapi.dev/api/people/?search=${personName}`)
-                    .then(response => response.json())
-                    .then(person => dispatch(updateDataResults(person.results)))
-            }
-            dispatch(results())
         }
     }, [dispatch, person, personName])
 
@@ -94,23 +87,6 @@ export const SinglePersonPage = ({ match }) => {
                 .then(response => Promise.all(response.map(element => element.json())))
                 .then(result => result.forEach(film => arrForMovies.push(film.title)))
                 .then(() => setPersonFilms(arrForMovies))
-        }
-        else {
-            const results = () => dispatch => {
-                fetch(`https://swapi.dev/api/people/?search=${personName}`)
-                    .then(response => response.json())
-                    .then(film => dispatch(updateDataResults(film.results)))
-            }
-            dispatch(results())
-        }
-    }, [])
-
-    useEffect(() => {
-        if (person) {
-            const { species } = person
-            fetch(species)
-                .then(response => response.json())
-                .then(result => setPersonSpecies(result.name))
         } else {
             const results = () => dispatch => {
                 fetch(`https://swapi.dev/api/people/?search=${personName}`)
@@ -119,7 +95,16 @@ export const SinglePersonPage = ({ match }) => {
             }
             dispatch(results())
         }
-    }, [])
+    }, [dispatch, person, personName])
+
+    useEffect(() => {
+        if (person) {
+            const { species } = person
+            fetch(species)
+                .then(response => response.json())
+                .then(result => setPersonSpecies(result.name))
+        }
+    }, [dispatch, person, personName])
 
     useEffect(() => {
         if (person) {
@@ -131,7 +116,7 @@ export const SinglePersonPage = ({ match }) => {
                 .then(result => result.forEach(vehicle => arrForVehicles.push(vehicle.name)))
                 .then(() => setPersonVehicles(arrForVehicles))
         }
-    }, [])
+    }, [dispatch, person, personName])
 
     useEffect(() => {
         if (person) {
@@ -143,8 +128,7 @@ export const SinglePersonPage = ({ match }) => {
                 .then(result => result.forEach(starship => arrForStarships.push(starship.name)))
                 .then(() => setPersonStarships(arrForStarships))
         }
-
-    }, [])
+    }, [dispatch, person, personName])
 
     const onGoback = () => history.push('/people')
 
@@ -265,7 +249,13 @@ export const SinglePersonPage = ({ match }) => {
                     <LeftMenu />
                 </div>
                 <div className={classes.content}>
-                    {showPage}
+                    {
+                        (personFilms.length !== person.films.length) ||
+                            (person.vehicles.length !== 0 && personVehicles.length !== person.vehicles.length) ||
+                            (person.starships.length !== 0 && personStarships.length !== person.starships.length)
+                            ? <CircularProgress />
+                            : showPage
+                    }
                 </div>
             </div>
         </section >
