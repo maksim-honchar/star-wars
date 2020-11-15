@@ -62,6 +62,7 @@ export const FilmsPage = () => {
     const currentPage = useSelector(selectCurrentPage)
 
     const [url, setUrl] = useState(`https://swapi.dev/api/films/?page=${currentPage + 1}`)
+    console.log(url)
 
     const handleChangePage = (event, newPage) => {
         if (currentPage < newPage) {
