@@ -9,10 +9,14 @@ import AppsIcon from '@material-ui/icons/Apps'
 const useStyles = makeStyles({
     wrapper: {
         // width: 200,
+        marginTop: 20
     },
     link: {
         textDecoration: 'none',
-        color: '#212121'
+        color: '#212121',
+    },
+    appsIcon: {
+        color: '#f57f17'
     }
 })
 
@@ -24,7 +28,7 @@ export const LeftMenu = () => {
         <Link to={`/${section}`} className={classes.link} key={section}>
             <ListItem button>
                 <ListItemIcon>
-                    <AppsIcon />
+                    <AppsIcon className={classes.appsIcon} />
                 </ListItemIcon>
                 <ListItemText primary={`${section.slice(0, 1).toUpperCase()}${section.slice(1)}`} />
             </ListItem>
@@ -42,7 +46,7 @@ export const LeftMenu = () => {
             <Link to="/" className={classes.link}>
                 <ListItem button>
                     <ListItemIcon>
-                        <AppsIcon />
+                        <AppsIcon className={classes.appsIcon} />
                     </ListItemIcon>
                     <ListItemText primary="Home" />
                 </ListItem>

@@ -42,7 +42,7 @@ export const MoviesCard = () => {
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
-                            MOVIES
+                            Films
                     </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
                             Star Wars movies
