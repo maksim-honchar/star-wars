@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { selectCount, updateDataCount } from './filmsSlice'
+import { useSelector } from 'react-redux'
+import { selectFilms } from './filmsSlice'
 import { useHistory } from 'react-router-dom'
-import { mainUrl } from '../app/helper'
+
 
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
@@ -52,10 +52,8 @@ const useStyles = makeStyles((theme) => ({
 
 export const AutoSearchFilms = () => {
     const classes = useStyles()
-    const dispatch = useDispatch()
     const history = useHistory()
-    const amountPlanets = useSelector(selectCount)
-
+    const films = useSelector(selectFilms)
 
     const [allFilms, setAllFilms] = useState([])
     const [value, setValue] = useState(null)
@@ -70,26 +68,10 @@ export const AutoSearchFilms = () => {
         setValue('')
     }
 
-
     useEffect(() => {
-        let addFilms = []
-        if (amountPlanets) {
-            for (let i = 1; i <= amountPlanets; i++) {
-                fetch(`${mainUrl}/films/${i}`)
-                    .then(response => response.json())
-                    .then(film => addFilms.push(film.title))
-            }
-            setAllFilms(addFilms)
-        } else {
-            const fetchCount = () => dispatch => {
-                fetch(`${mainUrl}/films/`)
-                    .then(response => response.json())
-                    .then(result => dispatch(updateDataCount(result.count)))
-            }
-            dispatch(fetchCount())
-        }
-    }, [amountPlanets, dispatch])
-
+        const arrFilms = films.map(film => film.title)
+        setAllFilms(arrFilms)
+    }, [films])
 
     const defaultProps = {
         options: allFilms,

@@ -80,7 +80,7 @@ export const SingleFilmPage = ({ match }) => {
         }
         else {
             const results = () => dispatch => {
-                fetch(`${mainUrl}/films/?search=${filmTitle}`)
+                fetch(`${mainUrl}/films/`)
                     .then(response => response.json())
                     .then(film => dispatch(updateDataResults(film.results)))
             }
