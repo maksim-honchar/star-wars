@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { updateDataResults } from './planetsSlice'
 import { useHistory } from 'react-router-dom'
-import axios from 'axios'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
@@ -65,9 +64,9 @@ export const SinglePlanetPage = ({ match }) => {
         if (planet) {
             const arrForResi = []
             const { residents } = planet
-            const requests = residents.map(resident => axios.get(resident))
-            axios.all(requests)
-                .then(response => axios.all(response.map(element => element.data)))
+            const requests = residents.map(resident => fetch(resident))
+            Promise.all(requests)
+                .then(response => Promise.all(response.map(element => element.json())))
                 .then(result => result.forEach(resident => arrForResi.push(resident.name)))
                 .then(() => setResi(arrForResi))
         }
