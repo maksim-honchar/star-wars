@@ -183,11 +183,10 @@ export const SinglePlanetPage = ({ match }) => {
                 </div>
                 <div className={classes.content}>
                     {
-                        // (planet.residents.length !== 0 && planet.residents.length !== resi.length) ||
-                        //     (planet.films.length !== 0 && planet.films.length !== films.length)
-                        //     ? <CircularProgress />
-                        //     : 
-                        showPage
+                        (planet.residents.length !== 0 && planet.residents.length !== resi.length) ||
+                            (planet.films.length !== 0 && planet.films.length !== films.length)
+                            ? <CircularProgress />
+                            : showPage
                     }
                 </div>
             </div>
