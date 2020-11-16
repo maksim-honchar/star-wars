@@ -70,7 +70,7 @@ export const SingleVehiclePage = ({ match }) => {
                 .then(result => result.forEach(pilot => arrForPilots.push(pilot.name)))
                 .then(() => setPilots(arrForPilots))
         }
-    }, [])
+    }, [vehicle])
 
     useEffect(() => {
         if (vehicle) {
