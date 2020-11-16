@@ -251,12 +251,11 @@ export const SinglePersonPage = ({ match }) => {
                 </div>
                 <div className={classes.content}>
                     {
-                        // (personFilms.length !== person.films.length) ||
-                        //     (person.vehicles.length !== 0 && personVehicles.length !== person.vehicles.length) ||
-                        //     (person.starships.length !== 0 && personStarships.length !== person.starships.length)
-                        //     ? <CircularProgress />
-                        //     : 
-                        showPage
+                        (personFilms.length !== person.films.length) ||
+                            (person.vehicles.length !== 0 && personVehicles.length !== person.vehicles.length) ||
+                            (person.starships.length !== 0 && personStarships.length !== person.starships.length)
+                            ? <CircularProgress />
+                            : showPage
                     }
                 </div>
             </div>
